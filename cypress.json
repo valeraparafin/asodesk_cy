@@ -3,7 +3,7 @@
   "viewportHeight": 760,
   "password" : "A123321b",
   "numTestsKeptInMemory": 0,
-  "video": false,
+  "video": true,
   "retries": 2,
   "projectId": "pzwe4b"
 }
