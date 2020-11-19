@@ -1,9 +1,10 @@
 {
   "viewportWidth": 1366,
   "viewportHeight": 760,
-  "password" : "A123321b",
   "numTestsKeptInMemory": 0,
   "video": true,
   "retries": 2,
-  "projectId": "idjn2s"
+  "projectId": "idjn2s",
+  "integrationFolder": "D:/git/asodesk_cy/integration",
+  "baseUrl": "https://hq.asodesk.com/"
 }

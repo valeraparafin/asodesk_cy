@@ -56,7 +56,7 @@ for (let i = 0; i <= favcountryID.length - 1; i++) {
                 method: 'get',
                 followRedirect: true, log: true, //turn off
 
-                url: 'api/category-ranking/chart?category=' + appCategoryID.get('gp') + '&category_list=free&country=' + favcountryID[i] + '&device_type=' + deviceType.get('android') + '&storeids=' + storeID.get('gp') + '&timestamp_since=' + todaysDate,
+                url: 'api/category-ranking/chart?category=' + appCategoryID.get('gp') + '&category_list=free&country=' + favcountryID[i] + '&device_type=' + deviceType.get('android') + '&storeids=' + storeID.get('gp') + '&timestamp_since=' + prevdaysDate,
                 headers: {
                     'accept': 'application/json'
                 },
