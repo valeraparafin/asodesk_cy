@@ -46,7 +46,7 @@ for (let i = 0; i <= favcountryID.length - 1; i++) {
             cy.get(':nth-child(2) > .mt15')
                 .type(password).should('have.value', password)
 
-            cy.get('.mt5 > .accountButton').click()
+            cy.get('.mt5 > .accountButton').should('not.be.disabled').click()
             cy.wait(3000)
             cy.request({
                 method: 'get',
