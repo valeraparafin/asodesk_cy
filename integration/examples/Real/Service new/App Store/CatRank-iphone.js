@@ -7,11 +7,12 @@ const login = 'iparafin@yandex.ru'
 const password = 'A123321b'
 
 const favcountryID = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR", "CN"]
-/*
+// const favcountryID = ["bb", "uz", "ch", "es", "lb", "ng", "mx", "eg", "cm", "uy", "th", "my", "bm", "cn", "gb", "il", "ec", "is", "hk", "in", "tw", "si", "nz", "ua", "cz", "do", "kw", "tr", "kr", "rs", "it", "vn", "sk", "sv", "no", "bh", "al", "ca", "kz", "qa", "ph", "pe", "by", "sa", "fr", "ge", "om", "kg", "ke", "hr", "kh", "ve", "ie", "pa", "az", "dz", "gt", "am", "py", "mt", "au", "be", "ae", "at", "hn", "za", "nl", "ru", "cy", "gh", "ar", "sg", "mo", "lk", "dk", "ni", "br", "bg", "pk", "lt", "sn", "cl", "us", "cr", "mg", "ao", "lu", "pt", "fi", "pl", "de", "jp", "co", "ee", "hu", "gr", "ug", "se", "tn", "lv", "ro", "id", "bo"]
+
 // тестовая дата в разрыв
-let prevdaysDate = 1597766884;
-let todaysDate = 1598086871;
-*/
+// let prevdaysDate = 1597766884;
+// let todaysDate = 1598086871;
+
 let country = new Map([
     ['Russia', "ru"],
     ['USA', "us"]
@@ -35,13 +36,13 @@ for (let i = 0; i <= favcountryID.length - 1; i++) {
 
     context('Check response from Category Ranking iPhone. Local ' + favcountryID[i], () => {
         beforeEach(() => {
-           cy.visit('https://hq.asodesk.com')
+            cy.visit('https://hq.asodesk.com')
         })
         it('Category Ranking API. Check data on y != null', () => {
             https://on.cypress.io/type
 
-            cy.get('.mt5 > :nth-child(1) > .mt15')
-                .type(login).should('have.value', login)
+                cy.get('.mt5 > :nth-child(1) > .mt15')
+                    .type(login).should('have.value', login)
 
             cy.get(':nth-child(2) > .mt15')
                 .type(password).should('have.value', password)
