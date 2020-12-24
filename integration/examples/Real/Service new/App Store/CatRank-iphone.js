@@ -1,10 +1,13 @@
 /// <reference types="cypress" />
+import 'dayjs';
 
-let prevdaysDate = Cypress.moment().format('X') - 200000
-let todaysDate = Cypress.moment().format('X') - 4800
+const dayjs = require('dayjs')
 
 const login = 'iparafin@yandex.ru'
 const password = 'A123321b'
+
+let todaysDate = dayjs().valueOf() - 14400000;
+let prevdaysDate = dayjs().unix() - 200000;
 
 const favcountryID = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR", "CN"]
 // const favcountryID = ["bb", "uz", "ch", "es", "lb", "ng", "mx", "eg", "cm", "uy", "th", "my", "bm", "cn", "gb", "il", "ec", "is", "hk", "in", "tw", "si", "nz", "ua", "cz", "do", "kw", "tr", "kr", "rs", "it", "vn", "sk", "sv", "no", "bh", "al", "ca", "kz", "qa", "ph", "pe", "by", "sa", "fr", "ge", "om", "kg", "ke", "hr", "kh", "ve", "ie", "pa", "az", "dz", "gt", "am", "py", "mt", "au", "be", "ae", "at", "hn", "za", "nl", "ru", "cy", "gh", "ar", "sg", "mo", "lk", "dk", "ni", "br", "bg", "pk", "lt", "sn", "cl", "us", "cr", "mg", "ao", "lu", "pt", "fi", "pl", "de", "jp", "co", "ee", "hu", "gr", "ug", "se", "tn", "lv", "ro", "id", "bo"]

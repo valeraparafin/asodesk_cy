@@ -1,5 +1,8 @@
 /// <reference types="cypress" />
 import {getToken} from "../Object library/Get_token";
+import 'dayjs';
+
+const dayjs = require('dayjs')
 
 const deviceType = 'iphone';
 const GetToken = new getToken();
@@ -7,8 +10,8 @@ const favcountryID = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR"
 const categoryAS = ["36", "3600", "6000", "6001", "6002", "6003", "6004", "6005", "6006", "6007", "6008", "6009", "6010", "6011", "6012", "6013", "6014", "6015", "6016", "6017", "6018", "6020", "6021", "6023", "6024", "6026", "6027", "7001", "7002", "7003", "7004", "7005", "7006", "7009", "7011", "7012", "7013", "7014", "7015", "7016", "7017", "7018", "7019", "10000", "10001", "10002"]; // exclude: id="0", "6025", "7007", "7008",
 
 
-let todaysDate = Cypress.moment().format('x') - 14400000
-let prevdaysDate = Cypress.moment().format('X') - 200000
+let todaysDate = dayjs().valueOf() - 14400000;
+let prevdaysDate = dayjs().unix() - 200000;
 
 let storeID;
 let topChartPos;
