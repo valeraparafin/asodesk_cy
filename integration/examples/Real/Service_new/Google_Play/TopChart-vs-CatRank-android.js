@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import {getToken} from "../Object library/Get_token";
+import {getToken} from "../Object_library/Get_token";
 import 'dayjs';
 
 const dayjs = require('dayjs')
