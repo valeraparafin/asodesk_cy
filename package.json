@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "runHeadless": "./node_modules/.bin/cypress run --headless",
     "runHeaded": "./node_modules/.bin/cypress run --headed --browser chrome",
-	"test:chrome": "./node_modules/.bin/cypress run --headed --browser chrome --spec "integration/*/*/*/App_Store/""
+	"test:chrome": "./node_modules/.bin/cypress run --headed --browser chrome"
   },
   "author": "Artem Klimov",
   "license": "ISC",
