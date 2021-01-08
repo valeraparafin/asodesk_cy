@@ -6,16 +6,10 @@
   "retries": 2,
   "projectId": "idjn2s",
   "integrationFolder": "D:/git/asodesk_cy/integration",
-  "baseUrl": "https://hq.asodesk.com/"
-}
-
-"scripts": {
-  "test:chrome": "cypress run --browser chrome"
-}
-
-{
-    "reporter": "cypress-multi-reporters",
-    "reporterOptions": {
-        "configFile": "reporter-config.json"
-    }
+  "baseUrl": "https://hq.asodesk.com/",
+  "reporter": "cypress-multi-reporters",
+  "reporterOptions": {
+      "configFile": "reported-config.json"
+    },
+	"videoCompression": 15
 }
