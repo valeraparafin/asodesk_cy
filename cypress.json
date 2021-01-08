@@ -8,3 +8,14 @@
   "integrationFolder": "D:/git/asodesk_cy/integration",
   "baseUrl": "https://hq.asodesk.com/"
 }
+
+"scripts": {
+  "test:chrome": "cypress run --browser chrome --spec "integration/examples/Real/Service new/App Store""
+}
+
+{
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "reporter-config.json"
+    }
+}
