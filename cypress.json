@@ -5,7 +5,7 @@
   "video": true,
   "retries": 2,
   "projectId": "idjn2s",
-  "integrationFolder": "D:/git/asodesk_cy/integration",
+  "integrationFolder": "./integration",
   "baseUrl": "https://hq.asodesk.com/",
   "reporter": "cypress-multi-reporters",
   "reporterOptions": {
