@@ -16,62 +16,69 @@ let prevdaysDate = dayjs().unix() - 200000;
 let storeID;
 let topChartPos;
 
-it('Authorize with Front-End', function () {
-    GetToken.Authorize();
-    // console.log(GetToken.token);
-});
+describe('AppStore Top #1 from Top-Chart equals CatRank', () => {
+    it('Authorize with Front-End', function () {
+        GetToken.Authorize();
+        // console.log(GetToken.token);
+    });
 
-for (let i = 0; i <= favcountryID.length - 1; i++) {
-    for (let n = 0; n <= categoryAS.length - 1; n++) {
+    for (let i = 0; i <= favcountryID.length - 1; i++) {
+        context('Compare positions Top-Chart & CatRank. Locale ' + favcountryID[i], () => {
 
-        context('Compare positions Top-Chart & CatRank. Category ' + categoryAS[n] + ' Locale ' + favcountryID[i], () => {
-            beforeEach('Check response from Top-Chart iPhone', () => {
+            for (let n = 0; n <= categoryAS.length - 1; n++) {
 
-                cy.request({
-                    method: 'get',
-                    followRedirect: true, log: true, //turn off
-                    url: 'api/' + favcountryID[i] + '/top-charts/?device_type=' + deviceType + '&length=20&list_type=free&start=0&store_id=' + categoryAS[n] + '&timestamp=' + todaysDate,
-                    headers: {
-                        'accept': 'application/json'
-                    },
-                    response: []
-                })
-                    .then((response) => {
-                        assert.equal(response.status, 200);
-                        chai.expect(response.body.recordsTotal).to.not.be.eq(0);
-                        topChartPos = response.body.data.results[0].position;
-                        let jsonData = response.body;
-                        storeID = jsonData.data.results[0].store_id;
+                context('Compare positions Top-Chart & CatRank. Category ' + categoryAS[n], () => {
+                    beforeEach('Check response from Top-Chart iPhone', () => {
+
+                        cy.request({
+                            method: 'get',
+                            followRedirect: true, log: true, //turn off
+                            url: 'api/' + favcountryID[i] + '/top-charts/?device_type=' + deviceType + '&length=20&list_type=free&start=0&store_id=' + categoryAS[n] + '&timestamp=' + todaysDate,
+                            headers: {
+                                'accept': 'application/json'
+                            },
+                            response: []
+                        })
+                            .then((response) => {
+                                assert.equal(response.status, 200);
+                                chai.expect(response.body.recordsTotal).to.not.be.eq(0);
+                                topChartPos = response.body.data.results[0].position;
+                                let jsonData = response.body;
+                                storeID = jsonData.data.results[0].store_id;
+                            })
+
                     })
 
-            })
+                    it('Category-Ranking API. Top-chart app #1 should to be equals Cat-Rank position', function () {
+                        cy.request({
+                            method: 'get',
+                            followRedirect: false, log: true, //turn off
 
-            it('Category-Ranking API. Top-chart app #1 should to be equals Cat-Rank position', function () {
-                cy.request({
-                    method: 'get',
-                    followRedirect: false, log: true, //turn off
+                            url: 'api/category-ranking/chart?category=' + categoryAS[n] + '&category_list=free&country=' + favcountryID[i] + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevdaysDate,
+                            headers: {
+                                "Authorization": "Token:" + GetToken.token,
+                                "sessionid": "" + GetToken.c //sessionid from cookies
+                            },
+                            response: []
+                        })
+                            .then((response) => {
+                                assert.equal(response.status, 200);
 
-                    url: 'api/category-ranking/chart?category=' + categoryAS[n] + '&category_list=free&country=' + favcountryID[i] + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevdaysDate,
-                    headers: {
-                        "Authorization": "Token:" + GetToken.token,
-                        "sessionid": "" + GetToken.c //sessionid from cookies
-                    },
-                    response: []
+                                if ((response.body.data.length) === 0) {
+                                    chai.expect(response.body.data.length).to.not.be.eq(0);
+                                } // if response json is empty
+                                else {
+                                    chai.expect(response.body.data[0].stats[0].y).to.be.eq(topChartPos);
+                                } // else response json has data and this data is equal this app position in Top-chart
+                            })
+                    });
+
                 })
-                    .then((response) => {
-                        assert.equal(response.status, 200);
 
-                        if ((response.body.data.length) === 0) {
-                            chai.expect(response.body.data.length).to.not.be.eq(0);
-                        } // if response json is empty
-                        else {
-                            chai.expect(response.body.data[0].stats[0].y).to.be.eq(topChartPos);
-                        } // else response json has data and this data is equal this app position in Top-chart
-                    })
-            });
-
+            }
         })
     }
-}
+});
+
 
 
