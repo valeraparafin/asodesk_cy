@@ -3,7 +3,7 @@
   "viewportHeight": 760,
   "numTestsKeptInMemory": 0,
   "video": true,
-  "retries": 2,
+  "retries": 0,
   "projectId": "idjn2s",
   "integrationFolder": "./integration",
   "baseUrl": "https://hq.asodesk.com/",
