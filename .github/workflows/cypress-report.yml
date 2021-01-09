@@ -1,5 +1,11 @@
 name: Create Cypress report
-on: [push]
+on:
+  #  push
+  #  branches:
+  #    - 'master'
+  # Add this part if you want to schedule test rerun
+  schedule:
+     - cron: '0 8 * * *' #every day at 8pm - minute hour day mounth year.
 
 jobs:
   cypress-e2e-chrome87:
@@ -28,7 +34,7 @@ jobs:
     - name: Deploy report page
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
         publish_dir: ./public
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
