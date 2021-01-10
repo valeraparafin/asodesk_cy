@@ -1,11 +1,19 @@
 name: Create Cypress report
-on:
+#on:
   #  push
   #  branches:
   #    - 'master'
   # Add this part if you want to schedule test rerun
+  #schedule:
+     #- cron: '0 8 * * *' #every day at 8pm - minute hour day mounth year.
+on:
+  push
+    #branches:
+    #  - 'master'
   schedule:
-     - cron: '0 8 * * *' #every day at 8pm - minute hour day mounth year.
+    - cron: '45 11 1-31 * *'     
+     
+     
 
 jobs:
   cypress-e2e-chrome87:
