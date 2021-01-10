@@ -7,7 +7,7 @@ name: Create Cypress report
   #schedule:
      #- cron: '0 8 * * *' #every day at 8pm - minute hour day mounth year.
 on:
-  push
+  push:
     #branches:
     #  - 'master'
   schedule:
