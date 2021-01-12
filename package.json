@@ -7,10 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "runHeadless": "./node_modules/.bin/cypress run --headless",
     "runHeaded": "./node_modules/.bin/cypress run --headed --browser chrome",
-    "test:chrome": "./node_modules/.bin/cypress run  -s 'integration/examples/Real/Service_new/Google_Play/CatRank-android.js,integration/examples/Real/Service_new/App_Store/CatRank-iphone.js,integration/examples/Real/Service_new/App_Store/TopChart-vs-CatRank-iphone.js,integration/examples/Real/Service_new/Google_Play/TopChart-vs-CatRank-android.js' --headed --browser chrome",
-	"report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
+    "test:chrome": "./node_modules/.bin/cypress run  -s 'integration/Service_new/Google_Play/CatRank-android.js,integration/Service_new/App_Store/CatRank-iphone.js,integration/Service_new/App_Store/TopChart-vs-CatRank-iphone.js,integration/Service_new/Google_Play/TopChart-vs-CatRank-android.js,integration/Service_new/App_Store/ASO-CR-iphone.js,integration/Service_new/Google_Play/ASO-CR-android.js' --headed --browser chrome",
+    "report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
     "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
- },
+  },
   "author": "Artem Klimov",
   "license": "ISC",
   "devDependencies": {
@@ -27,6 +27,6 @@
   "dependencies": {
     "ci": "^1.0.0",
     "cypress": "^6.2.1",
-    "dayjs": "^1.10.2"
+    "dayjs": "^1.10.3"
   }
 }
