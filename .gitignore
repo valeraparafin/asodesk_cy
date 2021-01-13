@@ -10,4 +10,7 @@ node_modules
 mochawesome-report
 .DS_Store
 
+# All log files
+*.log
+
 # End of https://www.toptal.com/developers/gitignore/api/cypressio
