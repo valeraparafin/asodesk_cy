@@ -27,11 +27,13 @@ let deviceType = new Map([
 ])
 let appCategoryID = new Map([
     ['aps', "6011"],
+    ['aps-cn', "6007"],
     ['gp', "MUSIC_AND_AUDIO"]
 ])
 
 let storeID = new Map([
     ['aps', "324684580"],
+    ['aps-cn', "388627783"],
     ['gp', "com.spotify.music"]
 ])
 
@@ -54,31 +56,60 @@ describe('AppStore CatRank Health-check', () => {
                 cy.get('.mt5 > .accountButton').should('not.be.disabled').click();
                 cy.get('.app .ng-scope').should('be.visible')
 
-                cy.request({
-                    method: 'get',
-                    followRedirect: false, log: true, //turn off
 
-                    url: 'api/category-ranking/chart?category=' + appCategoryID.get('aps') + '&category_list=free&country=' + favcountryID[i] + '&device_type=' + deviceType.get('iphone') + '&storeids=' + storeID.get('aps') + '&timestamp_since=' + prevdaysDate,
-                    headers: {
-                        'accept': 'application/json'
-                    },
-                    response: []
-                })
-                    .then((response) => {
-
-                        console.log(response.body);
-                        assert.equal(response.status, 200);
-
-                        if ((response.body.data.length) === 0) {
-                            chai.expect(response.body.data.length).to.not.be.eq(0)
-                        }
-                        // if response json is empty
-                        else {
-                            chai.expect(response.body.data[0].stats[0].y).to.not.be.eq(null)
-                        }
-                        // else response json has data and this data is not equal null
-                        // mean has data and graph is alive
+                if (favcountryID[i] === 'CN') {
+                    cy.request({
+                        method: 'get',
+                        followRedirect: false, log: true, //turn off
+                        url: 'api/category-ranking/chart?category=' + appCategoryID.get('aps-cn') + '&category_list=free&country=' + favcountryID[i] + '&device_type=' + deviceType.get('iphone') + '&storeids=' + storeID.get('aps-cn') + '&timestamp_since=' + prevdaysDate,
+                        headers: {
+                            'accept': 'application/json'
+                        },
+                        response: []
                     })
+                        .then((response) => {
+
+                            console.log(response.body);
+                            assert.equal(response.status, 200);
+
+                            if ((response.body.data.length) === 0) {
+                                chai.expect(response.body.data.length).to.not.be.eq(0)
+                            }
+                            // if response json is empty
+                            else {
+                                chai.expect(response.body.data[0].stats[0].y).to.not.be.eq(null)
+                            }
+                            // else response json has data and this data is not equal null
+                            // mean has data and graph is alive
+                        })
+
+                } else {
+                    cy.request({
+                        method: 'get',
+                        followRedirect: false, log: true, //turn off
+                        url: 'api/category-ranking/chart?category=' + appCategoryID.get('aps') + '&category_list=free&country=' + favcountryID[i] + '&device_type=' + deviceType.get('iphone') + '&storeids=' + storeID.get('aps') + '&timestamp_since=' + prevdaysDate,
+                        headers: {
+                            'accept': 'application/json'
+                        },
+                        response: []
+                    })
+                        .then((response) => {
+
+                            console.log(response.body);
+                            assert.equal(response.status, 200);
+
+                            if ((response.body.data.length) === 0) {
+                                chai.expect(response.body.data.length).to.not.be.eq(0)
+                            }
+                            // if response json is empty
+                            else {
+                                chai.expect(response.body.data[0].stats[0].y).to.not.be.eq(null)
+                            }
+                            // else response json has data and this data is not equal null
+                            // mean has data and graph is alive
+                        })
+                }
+
             })
         })
 
