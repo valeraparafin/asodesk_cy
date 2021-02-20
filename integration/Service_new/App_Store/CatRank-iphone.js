@@ -50,11 +50,8 @@ describe('AppStore CatRank Health-check', () => {
                 cy.get('.mt5 > .accountButton').should('not.be.disabled').click();
                 cy.get('.app .ng-scope').should('be.visible')
 
-                let storeID = storeIDs.get(country) || storeIDs.get('default');
-                console.log(storeID);
-
                 let appCategoryID = appCategoryIDs.get(country) || appCategoryIDs.get('default');
-                console.log(appCategoryID);
+                let storeID = storeIDs.get(country) || storeIDs.get('default');
 
                 cy.request({
                     method: 'get',
