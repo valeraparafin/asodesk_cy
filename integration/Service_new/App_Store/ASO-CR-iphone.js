@@ -6,10 +6,10 @@ import 'dayjs';
 const dayjs = require('dayjs')
 
 const GetToken = new getToken();
-const favCountryId = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR"];
-const favStoreId = ["324684580", "585027354", "835599320", "447188370"]; //spotify, googlemaps, tiktok, snapchat
 
-// let toDaysDate = dayjs().valueOf() - 14400000;
+const favCountryIds = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR"];
+const favStoreIds = ["324684580", "585027354", "835599320", "447188370"]; //spotify, googlemaps, tiktok, snapchat
+
 let prevDaysDate = dayjs().unix() - 200000;
 let monthAgo = dayjs().unix() - 2739405;
 
@@ -18,23 +18,22 @@ let isNull;
 describe('Healthy check ASO Comparative Report Chart', () => {
     it('Authorize with Front-End', function () {
         GetToken.Authorize();
-        // console.log(GetToken.token);
     });
 
-    for (let i = 0; i <= favStoreId.length - 1; i++) {
-        context('Check App by Store id: ' + favStoreId[i], () => {
+    for (let storeId of favStoreIds) {
+        context('Check App by Store id: ' + storeId, () => {
 
-            for (let n = 0; n <= favCountryId.length - 1; n++) {
+            for (let country of favCountryIds) {
 
-                it('Check App in Locale: ' + favCountryId[n], () => {
+                it('Check App in Locale: ' + country, () => {
                     cy.request({
                         method: 'get',
                         followRedirect: false, log: true, //turn off
 
-                        url: 'api/' + favCountryId[n] + '/' + favStoreId[i] + '/comparative-report-chart?time_since=' + monthAgo + '&time_till=' + prevDaysDate,
+                        url: 'api/' + country + '/' + storeId + '/comparative-report-chart?time_since=' + monthAgo + '&time_till=' + prevDaysDate,
                         headers: {
-                            "Authorization": "Token:" + GetToken.token,
-                            "sessionid": "" + GetToken.c //sessionid from cookies
+                            'Authorization': 'Token:' + GetToken.token,
+                            'sessionid': '' + GetToken.c //sessionid from cookies
                         },
                         response: []
                     })

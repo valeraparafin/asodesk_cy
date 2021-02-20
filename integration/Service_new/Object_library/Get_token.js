@@ -1,10 +1,10 @@
- export class getToken {
-    login = 'iparafin@yandex.ru' ;
+export class getToken {
+    login = 'iparafin@yandex.ru';
     password = 'A123321b';
     token = null;
     c = null;
 
-     Authorize () {
+    Authorize() {
         cy.visit('https://hq.asodesk.com');
         cy.get('.mt5 > :nth-child(1) > .mt15')
             .type(this.login).should('have.value', this.login)
@@ -38,9 +38,9 @@
             .then((response) => {
                 // console.log(response.body);
                 assert.equal(response.status, 200);
-                chai.expect(response.body.token).to.not.be.eq(null)
                 let jsonData = response.body;
                 this.token = jsonData.access;
+                chai.expect(this.token).to.not.be.eq(null)
                 // console.log(token);
             })
     };

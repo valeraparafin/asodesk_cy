@@ -6,7 +6,7 @@ const dayjs = require('dayjs')
 
 const deviceType = 'googleplay';
 const GetToken = new getToken();
-const favcountryID = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR", "CN"];
+const favcountryIDs = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR", "CN"];
 const categoryGP = ["ANDROID_WEAR", "ART_AND_DESIGN", "AUTO_AND_VEHICLES", "BEAUTY", "BOOKS_AND_REFERENCE", "BUSINESS", "CATEGORY_ALL", "COMICS", "COMMUNICATION", "DATING", "EDUCATION", "ENTERTAINMENT", "EVENTS", "HEALTH_AND_FITNESS", "HOUSE_AND_HOME", "LIBRARIES_AND_DEMO", "LIFESTYLE", "MAPS_AND_NAVIGATION", "MEDICAL", "MUSIC_AND_AUDIO", "NEWS_AND_MAGAZINES", "PARENTING", "PERSONALIZATION", "PHOTOGRAPHY", "PRODUCTIVITY", "SHOPPING", "SOCIAL", "SPORTS", "TOOLS", "TRAVEL_AND_LOCAL", "VIDEO_PLAYERS", "WEATHER"];
 // exlude "FAMILY", "FAMILY_ACTION", "FAMILY_BRAINGAMES", "FAMILY_CREATE", "FAMILY_EDUCATION", "FAMILY_MUSICVIDEO", "FAMILY_PRETEND", "FINANCE", "FOOD_AND_DRINK", "GAME", "GAME_ACTION", "GAME_ADVENTURE", "GAME_ARCADE", "GAME_BOARD", "GAME_CARD", "GAME_CASINO", "GAME_CASUAL", "GAME_EDUCATIONAL", "GAME_MUSIC", "GAME_PUZZLE", "GAME_RACING", "GAME_ROLE_PLAYING", "GAME_SIMULATION", "GAME_SPORTS", "GAME_STRATEGY", "GAME_TRIVIA", "GAME_WORD",
 
@@ -19,19 +19,18 @@ let topChartPos;
 describe('Android Top #1 from Top-Chart equals CatRank', () => {
     it('Authorize with Front-End', function () {
         GetToken.Authorize();
-        // console.log(GetToken.token);
     });
 
-    for (let i = 0; i <= favcountryID.length - 1; i++) {
-        context('Compare positions Top-Chart & CatRank. Locale ' + favcountryID[i], () => {
-            for (let n = 0; n <= categoryGP.length - 1; n++) {
+    for (let country of favcountryIDs) {
+        context('Compare positions Top-Chart & CatRank. Locale ' + country, () => {
+            for (let categoryId of categoryGP) {
 
-                context('Compare positions Top-Chart & CatRank. Category: ' + categoryGP[n], () => {
+                context('Compare positions Top-Chart & CatRank. Category: ' + categoryId, () => {
                     beforeEach('Check response from Top-Chart Android', () => {
                         cy.request({
                             method: 'get',
                             followRedirect: true, log: true, //turn off
-                            url: 'api/' + favcountryID[i] + '/top-charts/?device_type=' + deviceType + '&length=20&list_type=free&start=0&store_id=' + categoryGP[n] + '&timestamp=' + todaysDate,
+                            url: 'api/' + country + '/top-charts/?device_type=' + deviceType + '&length=20&list_type=free&start=0&store_id=' + categoryId + '&timestamp=' + todaysDate,
                             headers: {
                                 'accept': 'application/json'
                             },
@@ -39,11 +38,10 @@ describe('Android Top #1 from Top-Chart equals CatRank', () => {
                         })
                             .then((response) => {
 
-                                console.log(response.body);
                                 assert.equal(response.status, 200);
-                                chai.expect(response.body.recordsTotal).to.not.be.eq(0);
-                                topChartPos = response.body.data.results[0].position;
                                 let jsonData = response.body;
+                                chai.expect(jsonData.recordsTotal).to.not.be.eq(0);
+                                topChartPos = jsonData.data.results[0].position;
                                 storeID = jsonData.data.results[0].store_id;
                             })
 
@@ -53,7 +51,7 @@ describe('Android Top #1 from Top-Chart equals CatRank', () => {
                         cy.request({
                             method: 'get',
                             followRedirect: false, log: true, //turn off
-                            url: 'api/category-ranking/chart?category=' + categoryGP[n] + '&category_list=free&country=' + favcountryID[i] + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevdaysDate,
+                            url: 'api/category-ranking/chart?category=' + categoryId + '&category_list=free&country=' + country + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevdaysDate,
                             headers: {
                                 "Authorization": "Token:" + GetToken.token,
                                 "sessionid": "" + GetToken.c //sessionid from cookies
