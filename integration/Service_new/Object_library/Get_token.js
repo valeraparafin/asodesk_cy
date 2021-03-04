@@ -9,11 +9,11 @@ export class getToken {
         cy.get('.mt5 > :nth-child(1) > .mt15')
             .type(this.login).should('have.value', this.login)
 
-        cy.get(':nth-child(2) > .mt15')
+        cy.get('.mt5 > :nth-child(2) > .mt15')
             .type(this.password).should('have.value', this.password)
         cy.get('.mt5 > .accountButton').should('not.be.disabled').click()
 
-        cy.get('.app .ng-scope').should('be.visible')
+        cy.get('.dashboardAppCard').should('be.visible')
 
         //if the content on page is visible then get the cookies
         //cause we need a delay to get complete data, before send request
