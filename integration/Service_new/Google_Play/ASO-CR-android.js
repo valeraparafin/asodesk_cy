@@ -7,7 +7,7 @@ const dayjs = require('dayjs')
 const GetToken = new getToken();
 
 const favCountryIds = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR"];
-const favStoreIds = ["com.spotify.music", "ru.yandex.yandexmaps", "com.zhiliaoapp.musically", "com.snapchat.android"]; //spotify, yamaps, tiktok, snapchat
+const favStoreIds = ["com.spotify.music", "com.bpmobile.iscanner.free", "com.zhiliaoapp.musically", "com.snapchat.android"]; //spotify, pdf scanner, tiktok, snapchat
 
 let prevDaysDate = dayjs().unix() - 200000;
 let monthAgo = dayjs().unix() - 2739405;
