@@ -6,12 +6,12 @@ export class getToken {
 
     Authorize() {
         cy.visit('https://hq.asodesk.com');
-        cy.get('.mt5 > :nth-child(1) > .mt15')
+        cy.get('input[name="email"]')
             .type(this.login).should('have.value', this.login)
 
-        cy.get('.mt5 > :nth-child(2) > .mt15')
+        cy.get('input[name="password"]')
             .type(this.password).should('have.value', this.password)
-        cy.get('.mt5 > .accountButton').should('not.be.disabled').click()
+        cy.get('.buttonElement--primary').should('not.be.disabled').click()
 
         cy.get('.dashboardAppCard').should('be.visible')
 
