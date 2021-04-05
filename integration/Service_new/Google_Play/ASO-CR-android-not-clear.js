@@ -22,7 +22,7 @@ describe('Healthy check ASO Comparative Report Chart', () => {
         cy.get('.profileDropdown__toggle').click();
         cy.get('[href="/settings/profile"]').click();
         cy.wait(500);
-        cy.get('#id_is_clear_rank').check({force: true})
+        cy.get('#id_is_clear_rank').uncheck({force: true})
         cy.wait(500);
         cy.get(':nth-child(7) > .col-xs-12 > .btn-success').click();
 

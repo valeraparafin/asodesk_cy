@@ -2,7 +2,6 @@
 import {getToken} from "../Object_library/Get_token";
 import 'dayjs';
 
-
 const dayjs = require('dayjs')
 
 const GetToken = new getToken();
@@ -10,7 +9,7 @@ const GetToken = new getToken();
 const favCountryIds = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR"];
 const favStoreIds = ["324684580", "585027354", "835599320", "447188370"]; //spotify, googlemaps, tiktok, snapchat
 
-let prevDaysDate = dayjs().unix() - 10000; //  - 200000;
+let prevDaysDate = dayjs().unix() - 200000; //- 10000;
 let toDaysDate = dayjs().unix() - 4780; //
 //let monthAgo = dayjs().unix() - 2739405;
 
@@ -19,6 +18,14 @@ let isNull;
 describe('Healthy check ASO Comparative Report Chart', () => {
     it('Authorize with Front-End', function () {
         GetToken.Authorize();
+
+        cy.get('.profileDropdown__toggle').click();
+        cy.get('[href="/settings/profile"]').click();
+        cy.wait(500);
+        cy.get('#id_is_clear_rank').check({force: true})
+        cy.wait(500);
+        cy.get(':nth-child(7) > .col-xs-12 > .btn-success').click();
+
     });
 
     for (let storeId of favStoreIds) {
