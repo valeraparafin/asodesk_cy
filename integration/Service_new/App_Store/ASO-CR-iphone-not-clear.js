@@ -15,7 +15,7 @@ let toDaysDate = dayjs().unix() - 4780; //
 
 let isNull;
 
-describe('Healthy check ASO Comparative Report Chart', () => {
+describe('Healthy check ASO Comparative Report Chart with no ClearRank', () => {
     it('Authorize with Front-End', function () {
         GetToken.Authorize();
 
