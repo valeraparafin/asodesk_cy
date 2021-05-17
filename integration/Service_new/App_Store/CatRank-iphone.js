@@ -1,15 +1,11 @@
-import 'dayjs';
 import {getToken} from "../Object_library/Get_token";
+import {Constants} from "../Object_library/Constants";
 
-const dayjs = require('dayjs')
 const GetToken = new getToken();
-const favcountryIDs = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR", "CN"]
+const constants = new Constants();
 
-let todaysDate = dayjs().valueOf() - 14400000;
-let prevdaysDate = dayjs().unix() - 200000;
-
-
-// const favcountryID = ["bb", "uz", "ch", "es", "lb", "ng", "mx", "eg", "cm", "uy", "th", "my", "bm", "cn", "gb", "il", "ec", "is", "hk", "in", "tw", "si", "nz", "ua", "cz", "do", "kw", "tr", "kr", "rs", "it", "vn", "sk", "sv", "no", "bh", "al", "ca", "kz", "qa", "ph", "pe", "by", "sa", "fr", "ge", "om", "kg", "ke", "hr", "kh", "ve", "ie", "pa", "az", "dz", "gt", "am", "py", "mt", "au", "be", "ae", "at", "hn", "za", "nl", "ru", "cy", "gh", "ar", "sg", "mo", "lk", "dk", "ni", "br", "bg", "pk", "lt", "sn", "cl", "us", "cr", "mg", "ao", "lu", "pt", "fi", "pl", "de", "jp", "co", "ee", "hu", "gr", "ug", "se", "tn", "lv", "ro", "id", "bo"]
+const favCountryIds = constants.AsFavCountryIds;
+const prevDaysDate = constants.prevDaysDate;
 
 let deviceType = new Map([
     ['iphone', "iphone"],
@@ -31,7 +27,7 @@ describe('AppStore CatRank Health-check', () => {
         GetToken.Authorize();
     });
 
-    for (let country of favcountryIDs) {
+    for (let country of favCountryIds) {
         context('Check response from Category Ranking iPhone. Local ' + country, () => {
 
             it('Category Ranking API. Check data on y != null', () => {
@@ -42,7 +38,7 @@ describe('AppStore CatRank Health-check', () => {
                 cy.request({
                     method: 'get',
                     followRedirect: false, log: true, //turn off
-                    url: 'api/category-ranking/chart?category=' + appCategoryID + '&category_list=free&country=' + country + '&device_type=' + deviceType.get('iphone') + '&storeids=' + storeID + '&timestamp_since=' + prevdaysDate,
+                    url: 'api/category-ranking/chart?category=' + appCategoryID + '&category_list=free&country=' + country + '&device_type=' + deviceType.get('iphone') + '&storeids=' + storeID + '&timestamp_since=' + prevDaysDate,
                     headers: {
                         'accept': 'application/json',
                         'Authorization': 'Token:' + GetToken.token,

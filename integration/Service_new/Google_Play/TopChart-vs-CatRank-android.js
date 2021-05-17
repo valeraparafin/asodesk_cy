@@ -1,17 +1,16 @@
 /// <reference types="cypress" />
 import {getToken} from "../Object_library/Get_token";
-import 'dayjs';
+import {Constants} from "../Object_library/Constants";
 
-const dayjs = require('dayjs')
-
-const deviceType = 'googleplay';
 const GetToken = new getToken();
-const favcountryIDs = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR", "CN"];
-const categoryGP = ["ANDROID_WEAR", "ART_AND_DESIGN", "AUTO_AND_VEHICLES", "BEAUTY", "BOOKS_AND_REFERENCE", "BUSINESS", "CATEGORY_ALL", "COMICS", "COMMUNICATION", "DATING", "EDUCATION", "ENTERTAINMENT", "EVENTS", "HEALTH_AND_FITNESS", "HOUSE_AND_HOME", "LIBRARIES_AND_DEMO", "LIFESTYLE", "MAPS_AND_NAVIGATION", "MEDICAL", "MUSIC_AND_AUDIO", "NEWS_AND_MAGAZINES", "PARENTING", "PERSONALIZATION", "PHOTOGRAPHY", "PRODUCTIVITY", "SHOPPING", "SOCIAL", "SPORTS", "TOOLS", "TRAVEL_AND_LOCAL", "VIDEO_PLAYERS", "WEATHER"];
-// exlude "FAMILY", "FAMILY_ACTION", "FAMILY_BRAINGAMES", "FAMILY_CREATE", "FAMILY_EDUCATION", "FAMILY_MUSICVIDEO", "FAMILY_PRETEND", "FINANCE", "FOOD_AND_DRINK", "GAME", "GAME_ACTION", "GAME_ADVENTURE", "GAME_ARCADE", "GAME_BOARD", "GAME_CARD", "GAME_CASINO", "GAME_CASUAL", "GAME_EDUCATIONAL", "GAME_MUSIC", "GAME_PUZZLE", "GAME_RACING", "GAME_ROLE_PLAYING", "GAME_SIMULATION", "GAME_SPORTS", "GAME_STRATEGY", "GAME_TRIVIA", "GAME_WORD",
+const constants = new Constants();
 
-let todaysDate = dayjs().valueOf() - 14400000;
-let prevdaysDate = dayjs().unix() - 200000;
+const favCountryIds = constants.GpFavCountryIds;
+const categoryGP = constants.GpAllCategoryIds;
+const deviceType = constants.GpDeviceType;
+
+const prevDaysDate = constants.prevDaysDate;
+const toDaysDate = constants.toDaysDate;
 
 let storeID;
 let topChartPos;
@@ -21,7 +20,7 @@ describe('Android Top #1 from Top-Chart equals CatRank', () => {
         GetToken.Authorize();
     });
 
-    for (let country of favcountryIDs) {
+    for (let country of favCountryIds) {
         context('Compare positions Top-Chart & CatRank. Locale ' + country, () => {
             for (let categoryId of categoryGP) {
 
@@ -30,7 +29,7 @@ describe('Android Top #1 from Top-Chart equals CatRank', () => {
                         cy.request({
                             method: 'get',
                             followRedirect: true, log: true, //turn off
-                            url: 'api/' + country + '/top-charts/?device_type=' + deviceType + '&length=20&list_type=free&start=0&store_id=' + categoryId + '&timestamp=' + todaysDate,
+                            url: 'api/' + country + '/top-charts/?device_type=' + deviceType + '&length=20&list_type=free&start=0&store_id=' + categoryId + '&timestamp=' + toDaysDate,
                             headers: {
                                 'accept': 'application/json'
                             },
@@ -51,7 +50,7 @@ describe('Android Top #1 from Top-Chart equals CatRank', () => {
                         cy.request({
                             method: 'get',
                             followRedirect: false, log: true, //turn off
-                            url: 'api/category-ranking/chart?category=' + categoryId + '&category_list=free&country=' + country + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevdaysDate,
+                            url: 'api/category-ranking/chart?category=' + categoryId + '&category_list=free&country=' + country + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevDaysDate,
                             headers: {
                                 "Authorization": "Token:" + GetToken.token,
                                 "sessionid": "" + GetToken.c //sessionid from cookies

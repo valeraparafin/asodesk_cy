@@ -1,16 +1,18 @@
+import {Constants} from "../Object_library/Constants";
+
 export class getToken {
-    login = 'iparafin@yandex.ru';
-    password = 'A123321b';
+
+    constants = new Constants();
     token = null;
     c = null;
 
     Authorize() {
         cy.visit('https://hq.asodesk.com');
         cy.get('input[name="email"]')
-            .type(this.login).should('have.value', this.login)
+            .type(this.constants.login).should('have.value', this.constants.login)
 
         cy.get('input[name="password"]')
-            .type(this.password).should('have.value', this.password)
+            .type(this.constants.password).should('have.value', this.constants.password)
         cy.get('.buttonElement--primary').should('not.be.disabled').click()
 
         cy.get('.dashboardAppCard').should('be.visible')
@@ -31,8 +33,8 @@ export class getToken {
             url: 'https://hq.asodesk.com/api/auth/obtain', // baseUrl is prepended to url
             form: true, // indicates the body should be form urlencoded and sets Content-Type: application/x-www-form-urlencoded headers
             body: {
-                username: this.login,
-                password: this.password,
+                username: this.constants.login,
+                password: this.constants.password,
             }
         })
             .then((response) => {

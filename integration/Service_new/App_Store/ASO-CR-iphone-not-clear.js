@@ -1,18 +1,15 @@
 /// <reference types="cypress" />
 import {getToken} from "../Object_library/Get_token";
-import 'dayjs';
-
-const dayjs = require('dayjs')
-
+import {Constants} from "../Object_library/Constants";
 
 const GetToken = new getToken();
+const constants = new Constants();
 
-const favCountryIds = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR"];
-const favStoreIds = ["324684580", "585027354", "835599320", "447188370"]; //spotify, googlemaps, tiktok, snapchat
+const favCountryIds = constants.AsFavCountryIds;
+const favStoreIds = constants.AsFavStoreIds;
 
-let prevDaysDate = dayjs().unix() - 200000; //- 10000;
-let toDaysDate = dayjs().unix() - 4780; //
-//let monthAgo = dayjs().unix() - 2739405;
+const prevDaysDate = constants.prevDaysDate;
+const toDaysDate = constants.toDaysDate;
 
 describe('Healthy check ASO Comparative Report Chart with no ClearRank', () => {
     it('Authorize with Front-End', function () {
@@ -50,7 +47,7 @@ describe('Healthy check ASO Comparative Report Chart with no ClearRank', () => {
                                 let counter = (monthData.data["1"] + monthData.data["2-5"] + monthData.data["6-10"] + monthData.data["11-20"] + monthData.data["21-50"] + monthData.data["51-100"]);
                                 context('Find me a worsest day', () => {
                                     //Check three last days
-                                    counter === 0 ? assert.equal(counter, !0, 'Sum of Top Keywords equals ' + counter + '. Current time: ' + dayjs().format('DD-MM, HH:mm')) : cy.log('Everything is OK! Sum of Top Keywords equals ' + counter)
+                                    counter === 0 ? assert.equal(counter, !0, 'Sum of Top Keywords equals ' + counter) : cy.log('Everything is OK! Sum of Top Keywords equals ' + counter)
 
 
                                 });
