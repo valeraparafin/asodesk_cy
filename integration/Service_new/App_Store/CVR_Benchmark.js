@@ -1,7 +1,8 @@
 /// <reference types="cypress" />
 import 'dayjs';
-const dayjs = require('dayjs')
 
+
+const dayjs = require('dayjs')
 let prevMonth = dayjs().format("YYYYMM") - 1;
 let isNull;
 
