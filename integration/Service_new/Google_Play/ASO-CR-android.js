@@ -1,9 +1,11 @@
 /// <reference types="cypress" />
-import {getToken} from "../Object_library/Get_token";
+import {GetToken} from "../Object_library/Get_token";
 import {Constants} from "../Object_library/Constants";
+import {Functions} from "../Object_library/Functions";
 
-const GetToken = new getToken();
+const getToken = new GetToken();
 const constants = new Constants();
+const functions = new Functions();
 
 const favCountryIds = constants.GpFavCountryIds;
 const favStoreIds = constants.GpFavStoreIds;
@@ -13,15 +15,8 @@ const toDaysDate = constants.toDaysDate;
 
 describe('Healthy check ASO Comparative Report Chart', () => {
     it('Authorize with Front-End', function () {
-        GetToken.Authorize();
-
-        cy.get('.profileDropdown__toggle').click();
-        cy.get('[href="/settings/profile"]').click();
-        cy.wait(500);
-        cy.get('#id_is_clear_rank').check({force: true}).should('be.checked');
-        cy.wait(500);
-        cy.get(':nth-child(7) > .col-xs-12 > .btn-success').click();
-
+        getToken.authorize();
+        functions.setClearRank(true);
     });
 
     for (let storeId of favStoreIds) {
@@ -35,8 +30,8 @@ describe('Healthy check ASO Comparative Report Chart', () => {
                         followRedirect: false, log: true, //turn off
                         url: 'api/' + country + '/' + storeId + '/comparative-report-chart?time_since=' + prevDaysDate + '&time_till=' + toDaysDate,
                         headers: {
-                            'Authorization': 'Token:' + GetToken.token,
-                            'sessionid': '' + GetToken.c //sessionid from cookies
+                            'Authorization': 'Token:' + getToken.token,
+                            'sessionid': '' + getToken.c //sessionid from cookies
                         },
                         response: []
                     })

@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
-import {getToken} from "../Object_library/Get_token";
+import {GetToken} from "../Object_library/Get_token";
 import {Constants} from "../Object_library/Constants";
 
-const GetToken = new getToken();
+const getToken = new GetToken();
 const constants = new Constants();
 
 const favCountryIds = constants.GpFavCountryIds;
@@ -17,7 +17,7 @@ let topChartPos;
 
 describe('Android Top #1 from Top-Chart equals CatRank', () => {
     it('Authorize with Front-End', function () {
-        GetToken.Authorize();
+        getToken.authorize();
     });
 
     for (let country of favCountryIds) {
@@ -36,7 +36,6 @@ describe('Android Top #1 from Top-Chart equals CatRank', () => {
                             response: []
                         })
                             .then((response) => {
-
                                 assert.equal(response.status, 200);
                                 let jsonData = response.body;
                                 chai.expect(jsonData.recordsTotal).to.not.be.eq(0);
@@ -52,8 +51,8 @@ describe('Android Top #1 from Top-Chart equals CatRank', () => {
                             followRedirect: false, log: true, //turn off
                             url: 'api/category-ranking/chart?category=' + categoryId + '&category_list=free&country=' + country + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevDaysDate,
                             headers: {
-                                "Authorization": "Token:" + GetToken.token,
-                                "sessionid": "" + GetToken.c //sessionid from cookies
+                                'Authorization': 'Token:' + getToken.token,
+                                'sessionid': '' + getToken.c //sessionid from cookies
                             },
                             response: []
                         })

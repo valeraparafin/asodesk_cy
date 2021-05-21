@@ -1,7 +1,7 @@
-import {getToken} from "../Object_library/Get_token";
+import {GetToken} from "../Object_library/Get_token";
 import {Constants} from "../Object_library/Constants";
 
-const GetToken = new getToken();
+const getToken = new GetToken();
 const constants = new Constants();
 
 const favCountryIds = constants.AsFavCountryIds;
@@ -24,7 +24,7 @@ let storeIDs = new Map([
 
 describe('AppStore CatRank Health-check', () => {
     it('Authorize with Front-End', function () {
-        GetToken.Authorize();
+        getToken.authorize();
     });
 
     for (let country of favCountryIds) {
@@ -41,8 +41,8 @@ describe('AppStore CatRank Health-check', () => {
                     url: 'api/category-ranking/chart?category=' + appCategoryID + '&category_list=free&country=' + country + '&device_type=' + deviceType.get('iphone') + '&storeids=' + storeID + '&timestamp_since=' + prevDaysDate,
                     headers: {
                         'accept': 'application/json',
-                        'Authorization': 'Token:' + GetToken.token,
-                        'sessionid': '' + GetToken.c //sessionid from cookies
+                        'Authorization': 'Token:' + getToken.token,
+                        'sessionid': '' + getToken.c //sessionid from cookies
                     },
                     response: []
                 })

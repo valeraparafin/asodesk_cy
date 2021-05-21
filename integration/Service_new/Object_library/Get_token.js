@@ -1,12 +1,12 @@
 import {Constants} from "../Object_library/Constants";
 
-export class getToken {
+export class GetToken {
 
     constants = new Constants();
     token = null;
     c = null;
 
-    Authorize() {
+    authorize() {
         cy.visit('https://hq.asodesk.com');
         cy.get('input[name="email"]')
             .type(this.constants.login).should('have.value', this.constants.login)
