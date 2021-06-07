@@ -1,22 +1,23 @@
 /// <reference types="cypress" />
-import {GetToken} from "../Object_library/Get_token";
-import {Constants} from "../Object_library/Constants";
-import {Functions} from "../Object_library/Functions";
+import {Auth} from "../Classes_library/Auth";
+import {Constants} from "../Classes_library/Constants";
+import {Commands} from "../Classes_library/Commands";
 
-const getToken = new GetToken();
-const constants = new Constants();
-const functions = new Functions();
+const auth = new Auth();
+const constant = new Constants();
+const command = new Commands();
 
-const favCountryIds = constants.AsFavCountryIds;
-const favStoreIds = constants.AsFavStoreIds;
+const favCountryIds = constant.AsFavCountryIds;
+const favStoreIds = constant.AsFavStoreIds;
 
-const prevDaysDate = constants.prevDaysDate;
-const toDaysDate = constants.toDaysDate;
+const prevDaysDate = constant.prevDaysDate;
+const toDaysDate = constant.toDaysDate;
 
 describe('Healthy check ASO Comparative Report Chart', () => {
     it('Authorize with Front-End', function () {
-        getToken.authorize();
-        functions.setClearRank(true);
+        auth.signIn();
+        auth.getToken();
+        command.setClearRank(true);
     });
 
     for (let storeId of favStoreIds) {
@@ -30,8 +31,8 @@ describe('Healthy check ASO Comparative Report Chart', () => {
                         followRedirect: false, log: true, //turn off
                         url: 'api/' + country + '/' + storeId + '/comparative-report-chart?time_since=' + prevDaysDate + '&time_till=' + toDaysDate,
                         headers: {
-                            'Authorization': 'Token:' + getToken.token,
-                            'sessionid': '' + getToken.c //sessionid from cookies
+                            'Authorization': '' + auth.token,
+                            'sessionid': '' + auth.session //sessionid from cookies
                         },
                         response: []
                     })

@@ -9,6 +9,7 @@ cypress/videos/*
 node_modules
 mochawesome-report
 .DS_Store
+*/Service_new/Test_file.js
 
 # All log files
 *.log

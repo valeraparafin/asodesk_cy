@@ -1,24 +1,25 @@
 /// <reference types="cypress" />
-import {GetToken} from "../Object_library/Get_token";
-import {Constants} from "../Object_library/Constants";
+import {Auth} from "../Classes_library/Auth";
+import {Constants} from "../Classes_library/Constants";
 
-const getToken = new GetToken();
-const constants = new Constants();
+const auth = new Auth();
+const constant = new Constants();
 
-const favCountryIds = constants.AsFavCountryIds;
+const favCountryIds = constant.AsFavCountryIds;
 
-const deviceType = constants.AsDeviceType;
-const categoryAS = constants.AsAllCategoryIds;
+const deviceType = constant.AsDeviceType;
+const categoryAS = constant.AsAllCategoryIds;
 
-const prevDaysDate = constants.prevDaysDate;
-const toDaysDate = constants.toDaysDate;
+const prevDaysDate = constant.prevDaysDate;
+const toDaysDate = constant.toDaysDate;
 
 let storeID;
 let topChartPos;
 
 describe('AppStore Top #1 from Top-Chart equals CatRank', () => {
     it('Authorize with Front-End', function () {
-        getToken.authorize();
+        auth.signIn();
+        auth.getToken();
     });
     for (let country of favCountryIds) {
         context('Compare positions Top-Chart & CatRank. Locale ' + country, () => {
@@ -27,7 +28,6 @@ describe('AppStore Top #1 from Top-Chart equals CatRank', () => {
 
                 context('Compare positions Top-Chart & CatRank. Category ' + categoryId, () => {
                     beforeEach('Check response from Top-Chart iPhone', () => {
-
                         cy.request({
                             method: 'get',
                             followRedirect: true, log: true, //turn off
@@ -54,8 +54,9 @@ describe('AppStore Top #1 from Top-Chart equals CatRank', () => {
 
                             url: 'api/category-ranking/chart?category=' + categoryId + '&category_list=free&country=' + country + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevDaysDate,
                             headers: {
-                                'Authorization': 'Token:' + getToken.token,
-                                'sessionid': '' + getToken.c //sessionid from cookies
+                                //'Authorization': 'Token:' + auth.token,
+                                'Authorization': '' + auth.token,
+                                'sessionid': '' + auth.session //sessionid from cookies
                             },
                             response: []
                         })

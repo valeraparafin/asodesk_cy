@@ -1,23 +1,24 @@
 /// <reference types="cypress" />
-import {GetToken} from "../Object_library/Get_token";
-import {Constants} from "../Object_library/Constants";
+import {Auth} from "../Classes_library/Auth";
+import {Constants} from "../Classes_library/Constants";
 
-const getToken = new GetToken();
-const constants = new Constants();
+const auth = new Auth();
+const constant = new Constants();
 
-const favCountryIds = constants.GpFavCountryIds;
-const categoryGP = constants.GpAllCategoryIds;
-const deviceType = constants.GpDeviceType;
+const favCountryIds = constant.GpFavCountryIds;
+const categoryGP = constant.GpAllCategoryIds;
+const deviceType = constant.GpDeviceType;
 
-const prevDaysDate = constants.prevDaysDate;
-const toDaysDate = constants.toDaysDate;
+const prevDaysDate = constant.prevDaysDate;
+const toDaysDate = constant.toDaysDate;
 
 let storeID;
 let topChartPos;
 
 describe('Android Top #1 from Top-Chart equals CatRank', () => {
     it('Authorize with Front-End', function () {
-        getToken.authorize();
+        auth.signIn();
+        auth.getToken();
     });
 
     for (let country of favCountryIds) {
@@ -51,8 +52,8 @@ describe('Android Top #1 from Top-Chart equals CatRank', () => {
                             followRedirect: false, log: true, //turn off
                             url: 'api/category-ranking/chart?category=' + categoryId + '&category_list=free&country=' + country + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevDaysDate,
                             headers: {
-                                'Authorization': 'Token:' + getToken.token,
-                                'sessionid': '' + getToken.c //sessionid from cookies
+                                'Authorization': '' + auth.token,
+                                'sessionid': '' + auth.session //sessionid from cookies
                             },
                             response: []
                         })

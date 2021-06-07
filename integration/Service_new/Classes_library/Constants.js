@@ -8,6 +8,9 @@ export class Constants {
     login = 'iparafin@yandex.ru';
     password = 'A123321b';
 
+    // Test data
+    name = 'test-name' // use it every time when input should have name
+
     // Dates
     prevDaysDate = dayjs().unix() - 200000; //- 10000;
     toDaysDate = dayjs().unix() - 4780; //
