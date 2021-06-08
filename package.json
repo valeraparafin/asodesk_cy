@@ -14,11 +14,11 @@
   "author": "Artem Klimov",
   "license": "ISC",
   "devDependencies": {
-    "cypress-multi-reporters": "^1.4.0",
-    "mocha": "^8.0.1",
-    "mochawesome": "^6.1.1",
+    "cypress-multi-reporters": "^1.5.0",
+    "mocha": "^8.4.0",
+    "mochawesome": "^6.2.2",
     "mochawesome-merge": "^4.1.0",
-    "mochawesome-report-generator": "^5.1.0"
+    "mochawesome-report-generator": "^5.2.0"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "ci": "^1.0.0",
     "cypress": "^7.5.0",
     "cypress-mailslurp": "^1.1.0",
-    "dayjs": "^1.10.3"
+    "dayjs": "^1.10.5",
+    "glob-parent": ">=5.1.2"
   }
 }
