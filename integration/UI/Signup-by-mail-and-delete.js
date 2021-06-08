@@ -18,12 +18,13 @@ describe("User sign up test with mailslurp plugin", function () {
                 cy.wrap(inbox.emailAddress).as('emailAddress')
             })
     });
+
     it("01 - can load the demo application", function () {
         // get wrapped email address and assert contains a mailslurp email address
         chai.expect(this.emailAddress).to.contain("@mailslurp");
         // visit the application with generated email
         auth.signUp('https://hq.asodesk.com', this.emailAddress);
-     });
+    });
 
     it("02 - can receive confirmation code by email and activate account", function () {
         // app will send user an email containing a code, use mailslurp to wait for the latest email
@@ -41,7 +42,6 @@ describe("User sign up test with mailslurp plugin", function () {
             })
     });
 
-
     it("03 - can choose tariff plan", function () {
         // set cookie to continue and choose the tariff
         cy.setCookie('Authorization', auth.token);
@@ -54,4 +54,5 @@ describe("User sign up test with mailslurp plugin", function () {
         cy.visit('/');
         command.deleteUser()
     });
+
 });
