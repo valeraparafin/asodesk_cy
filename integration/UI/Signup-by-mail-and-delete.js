@@ -28,12 +28,12 @@ describe("User sign up test with mailslurp plugin", function () {
     it("02 - can receive confirmation code by email and activate account", function () {
         // app will send user an email containing a code, use mailslurp to wait for the latest email
         cy.mailslurp()
-            // use inbox id and a timeout of 30 seconds
+            // use inbox id and a timeout of 30 seconds, check unread mail only (set true)
             .then(mailslurp => mailslurp.waitForLatestEmail(
-                'ac0c15f1-5ae9-4b7f-8bd4-02ecbc3c2f6d', 3000, false))
+                'ac0c15f1-5ae9-4b7f-8bd4-02ecbc3c2f6d', 3000, true))
             // extract the confirmation code from the email body
             .then(email => new RegExp('accounts/confirm-email/.{43}').exec(email.body))
-            // generate url with confirmation code and activate account
+            // generate url with confirmation code to activate account and get token from cookies to use it below
             .then(code => {
                 cy.visit("/" + code);
                 cy.wait(3000);
@@ -43,11 +43,13 @@ describe("User sign up test with mailslurp plugin", function () {
 
 
     it("03 - can choose tariff plan", function () {
+        // set cookie to continue and choose the tariff
         cy.setCookie('Authorization', auth.token);
         command.chooseTariff('Free')
     });
 
     it('04 - can delete user', function () {
+        // set cookie to continue and delete the user
         cy.setCookie('Authorization', auth.token);
         cy.visit('/');
         command.deleteUser()
