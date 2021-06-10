@@ -7,7 +7,7 @@ export class Commands {
 
     setClearRank(status) {
         cy.get('.profileDropdown__toggle').click();
-        cy.get('[href="/settings/profile"]').click();
+        cy.get('.dropdown-menu > [href="/settings/profile"]').click();
         cy.wait(500);
         status != true ? cy.get('#id_is_clear_rank').uncheck({force: true}).should('not.be.checked') : cy.get('#id_is_clear_rank').check({force: true}).should('be.checked');
         cy.wait(500);
