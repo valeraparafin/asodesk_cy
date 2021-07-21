@@ -5,6 +5,8 @@ export class Auth {
     token = null;
     session = null;
 
+    /////// This section use front-end ////////
+
     signIn(url, Email) {
         if (url != null) {
             cy.visit(url);
@@ -61,7 +63,8 @@ export class Auth {
             })
     };
 
-    /////// Obtain by API ////////
+    /////// This section use API ////////
+
     obtain() {
         cy.request({
             method: 'POST',
@@ -81,8 +84,4 @@ export class Auth {
                 //console.log(jsonData);
             })
     }
-
-
 }
-
-

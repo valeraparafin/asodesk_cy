@@ -15,7 +15,11 @@ export class Constants {
     prevDaysDate = dayjs().unix() - 200000; //- 10000;
     toDaysDate = dayjs().unix() - 4780; //
     monthAgo = dayjs().unix() - 2739405;
-    //todaysDate = dayjs().valueOf() - 14400000;
+
+
+    s_monthAgo = dayjs() - 2645729858;
+    s_prevDaysDate = dayjs() - 200000; //- 10000;
+    s_toDaysDate = dayjs() - 984300;
 
     // App Store
     AsDeviceType = 'iphone';
