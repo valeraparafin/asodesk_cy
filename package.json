@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "smoke:chrome": "./node_modules/.bin/cypress run  -s 'integration/Smoke_suite/Env_is_alive/*.js,integration/UI/Signup-by-mail-and-delete.js' --headless --browser chrome",
     "test": "echo \"Error: no test specified\" && exit 1",
     "runHeadless": "./node_modules/.bin/cypress run --headless",
     "runHeaded": "./node_modules/.bin/cypress run --headed --browser chrome",
@@ -26,7 +27,7 @@
   },
   "dependencies": {
     "ci": "^1.0.0",
-    "cypress": "^7.5.0",
+    "cypress": "^8.0.0",
     "cypress-mailslurp": "^1.1.0",
     "dayjs": "^1.10.5",
     "glob-parent": ">=5.1.2"

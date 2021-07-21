@@ -23,7 +23,7 @@ describe("User sign up test with mailslurp plugin", function () {
         // get wrapped email address and assert contains a mailslurp email address
         chai.expect(this.emailAddress).to.contain("@mailslurp");
         // visit the application with generated email
-        auth.signUp('https://hq.asodesk.com', this.emailAddress);
+        auth.signUp(null, this.emailAddress);
     });
 
     it("02 - can receive confirmation code by email and activate account", function () {
@@ -31,7 +31,7 @@ describe("User sign up test with mailslurp plugin", function () {
         cy.mailslurp()
             // use inbox id and a timeout of 30 seconds, check unread mail only (set true)
             .then(mailslurp => mailslurp.waitForLatestEmail(
-                'ac0c15f1-5ae9-4b7f-8bd4-02ecbc3c2f6d', 3000, true))
+                'ac0c15f1-5ae9-4b7f-8bd4-02ecbc3c2f6d', 8000, true))
             // extract the confirmation code from the email body
             .then(email => new RegExp('accounts/confirm-email/.{43}').exec(email.body))
             // generate url with confirmation code to activate account and get token from cookies to use it below
