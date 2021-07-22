@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "smoke:chrome": "./node_modules/.bin/cypress run  -s 'integration/Smoke_suite/Env_is_alive/*.js,integration/UI/Signup-by-mail-and-delete.js' --headless --browser chrome",
     "test": "echo \"Error: no test specified\" && exit 1",
     "runHeadless": "./node_modules/.bin/cypress run --headless",
     "runHeaded": "./node_modules/.bin/cypress run --headed --browser chrome",
-    "test:chrome": "./node_modules/.bin/cypress run  -s 'integration/Service_new/Google_Play/CatRank-android.js,integration/Service_new/App_Store/CatRank-iphone.js,integration/Service_new/App_Store/TopChart-vs-CatRank-iphone.js,integration/Service_new/Google_Play/TopChart-vs-CatRank-android.js,integration/Service_new/App_Store/ASO-CR-iphone.js,integration/Service_new/App_Store/ASO-CR-iphone-not-clear.js,integration/Service_new/Google_Play/ASO-CR-android.js,integration/Service_new/Google_Play/ASO-CR-android-not-clear.js,integration/Service_new/CVR_Benchmark.js' --headed --browser chrome",
+	"smoke:chrome": "./node_modules/.bin/cypress run  -s 'integration/Smoke_suite/Env_is_alive/*.js,integration/UI/Signup-by-mail-and-delete.js' --headless --browser chrome",
+    "test:chrome": "./node_modules/.bin/cypress run  -s 'integration/Service_new/Google_Play/CatRank-android.js,integration/Service_new/App_Store/CatRank-iphone.js,integration/Service_new/App_Store/TopChart-vs-CatRank-iphone.js,integration/Service_new/Google_Play/TopChart-vs-CatRank-android.js,integration/Service_new/App_Store/ASO-CR-iphone.js,integration/Service_new/App_Store/ASO-CR-iphone-not-clear.js,integration/Service_new/Google_Play/ASO-CR-android.js,integration/Service_new/Google_Play/ASO-CR-android-not-clear.js,integration/Service_new/CVR_Benchmark.js' --headless --browser chrome",
     "report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
     "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
   },
