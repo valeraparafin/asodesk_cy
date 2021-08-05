@@ -7,7 +7,7 @@ const constant = new Constants();
 
 const favCountryIds = constant.AsFavCountryIds;
 
-const deviceType = constant.AsDeviceType;
+const deviceType = constant.AsDeviceTypePhone;
 const categoryAS = constant.AsAllCategoryIds;
 
 const prevDaysDate = constant.prevDaysDate;
@@ -17,12 +17,11 @@ let storeID;
 let topChartPos;
 
 describe('AppStore Top #1 from Top-Chart equals CatRank', () => {
-    it('Authorize with Front-End', function () {
-        auth.signIn();
-        auth.getToken();
+    it('Authorize with API', function () {
+        auth.obtain();
     });
     for (let country of favCountryIds) {
-        context('Compare positions Top-Chart & CatRank. Locale ' + country, () => {
+        context('Compare positions Top-Chart & CatRank. Locale ' + country.toUpperCase(), () => {
 
             for (let categoryId of categoryAS) {
 
@@ -54,9 +53,8 @@ describe('AppStore Top #1 from Top-Chart equals CatRank', () => {
 
                             url: 'api/category-ranking/chart?category=' + categoryId + '&category_list=free&country=' + country + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevDaysDate,
                             headers: {
-                                //'Authorization': 'Token:' + auth.token,
-                                'Authorization': '' + auth.token,
-                                'sessionid': '' + auth.session //sessionid from cookies
+                                'accept': 'application/json',
+                                'Authorization': 'Token:' + auth.token,
                             },
                             response: []
                         })

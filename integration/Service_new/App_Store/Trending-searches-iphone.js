@@ -8,7 +8,7 @@ const constant = new Constants();
 
 const favCountryIds = constant.AsFavCountryIds;
 const prevDaysDate = constant.s_toDaysDate;
-const deviceType = constant.AsDeviceType;
+const deviceType = constant.AsDeviceTypePhone;
 
 let resp = null;
 
@@ -18,7 +18,7 @@ describe('Trending Searches Health-check.', () => {
     });
 
     for (let country of favCountryIds) {
-        context('Trending Searches. Device: ' + deviceType + '. Local: ' + country, () => {
+        context('Trending Searches. Device: ' + deviceType + '. Local: ' + country.toUpperCase(), () => {
             it('Response should equal 200', () => {
                 cy.request({
                     method: 'get',
@@ -62,7 +62,6 @@ describe('Trending Searches Health-check.', () => {
                     it('Ojbect #' + f + ' has 4 keywords with 3 apps', () => {
                         for (let i = 0; i <= 3; i++) {
                             let apps = resp.results[f].keywords[i].apps.length;
-                            console.log(apps + ' | ' + i);
                             expect(apps).equal(3);
                         }
                     })

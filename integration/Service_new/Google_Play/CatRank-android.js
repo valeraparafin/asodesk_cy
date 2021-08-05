@@ -19,14 +19,13 @@ let storeIDs = new Map([
 ])
 
 describe('Android CatRank Health-check', () => {
-    it('Authorize with Front-End', function () {
-        auth.signIn();
-        auth.getToken();
+    it('Authorize with API', function () {
+        auth.obtain();
     });
 
     for (let country of favCountryIds) {
 
-        context('Check response from Category Ranking Android. Local ' + country, () => {
+        context('Check response from Category Ranking Android. Local ' + country.toUpperCase(), () => {
 
             it('Category Ranking API. Check data on y != null', () => {
 
@@ -40,8 +39,7 @@ describe('Android CatRank Health-check', () => {
                     url: 'api/category-ranking/chart?category=' + appCategoryID + '&category_list=free&country=' + country + '&device_type=' + deviceType.get('android') + '&storeids=' + storeID + '&timestamp_since=' + prevDaysDate,
                     headers: {
                         'accept': 'application/json',
-                        'Authorization': '' + auth.token,
-                        'sessionid': '' + auth.session //sessionid from cookies
+                        'Authorization': 'Token:' + auth.token,
                     },
                     response: []
                 })

@@ -16,13 +16,12 @@ let storeID;
 let topChartPos;
 
 describe('Android Top #1 from Top-Chart equals CatRank', () => {
-    it('Authorize with Front-End', function () {
-        auth.signIn();
-        auth.getToken();
+    it('Authorize with API', function () {
+        auth.obtain();
     });
 
     for (let country of favCountryIds) {
-        context('Compare positions Top-Chart & CatRank. Locale ' + country, () => {
+        context('Compare positions Top-Chart & CatRank. Locale ' + country.toUpperCase(), () => {
             for (let categoryId of categoryGP) {
 
                 context('Compare positions Top-Chart & CatRank. Category: ' + categoryId, () => {
@@ -52,8 +51,8 @@ describe('Android Top #1 from Top-Chart equals CatRank', () => {
                             followRedirect: false, log: true, //turn off
                             url: 'api/category-ranking/chart?category=' + categoryId + '&category_list=free&country=' + country + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevDaysDate,
                             headers: {
-                                'Authorization': '' + auth.token,
-                                'sessionid': '' + auth.session //sessionid from cookies
+                                'accept': 'application/json',
+                                'Authorization': 'Token:' + auth.token,
                             },
                             response: []
                         })

@@ -25,7 +25,7 @@ describe('Healthy check ASO Comparative Report Chart with no ClearRank', () => {
 
             for (let country of favCountryIds) {
 
-                it('Check App in Locale: ' + country, () => {
+                it('Check App in Locale: ' + country.toUpperCase(), () => {
                     cy.request({
                         method: 'get',
                         followRedirect: false, log: true, //turn off

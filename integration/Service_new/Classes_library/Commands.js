@@ -7,12 +7,11 @@ export class Commands {
 
     setClearRank(status) {
         cy.get('.profileDropdown__toggle').click();
-        cy.get('.dropdown-menu > [href="/settings/profile"]').click();
+        cy.get('.dropdown-menu > [href="/settings/profile"]').click({waitForAnimations: false});
         cy.wait(500);
         status != true ? cy.get('#id_is_clear_rank').uncheck({force: true}).should('not.be.checked') : cy.get('#id_is_clear_rank').check({force: true}).should('be.checked');
         cy.wait(500);
         cy.get(':nth-child(7) > .col-xs-12 > .btn-success').click();
-
     }
 
     deleteUser() {
@@ -51,5 +50,5 @@ export class Commands {
         cy.get('#react-select-5-option-10').click();
 
         cy.get('.buttonElement--primary').should('not.be.disabled').click();
-     }
+    }
 }
