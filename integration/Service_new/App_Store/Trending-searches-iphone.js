@@ -33,7 +33,6 @@ describe('Trending Searches Health-check.', () => {
                     .then((response) => {
                         assert.equal(response.status, 200);
                         resp = response.body;
-                        console.log(resp)
                     })
             })
 
@@ -43,7 +42,6 @@ describe('Trending Searches Health-check.', () => {
                         expect(resp.results[f].keywords.length).to.be.greaterThan(3);
                     })
                 }
-
             })
 
             context('Minimum 3 hours gap between objects', () => {
