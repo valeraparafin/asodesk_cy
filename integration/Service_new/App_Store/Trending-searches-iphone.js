@@ -47,10 +47,10 @@ describe('Trending Searches Health-check.', () => {
             context('Minimum 3 hours gap between objects', () => {
                 for (let f = 0; f < 7; f++) {
                     it('Ojbect #' + f + ' and Object #' + (f + 1) + ' has minimum hours gap = 3', () => {
-                        let first = dayjs(resp.results[f].timestamp).unix();
-                        let second = dayjs(resp.results[f + 1].timestamp).unix();
-                        let compare = dayjs(first - second).hour();
-                        expect(compare).to.be.greaterThan(2)
+                        const date1 = dayjs(resp.results[f].timestamp);
+                        const date2 = dayjs(resp.results[f + 1].timestamp);
+                        const result = date1.diff(date2, 'hour', true);
+                        expect(Math.round(result)).to.be.greaterThan(2)
                     })
                 }
             })
