@@ -33,7 +33,6 @@ describe('Trending Searches Health-check.', () => {
                     .then((response) => {
                         assert.equal(response.status, 200);
                         resp = response.body;
-                        console.log(resp)
                     })
             })
 

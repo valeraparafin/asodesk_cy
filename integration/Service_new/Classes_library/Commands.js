@@ -6,7 +6,7 @@ const constant = new Constants();
 export class Commands {
 
     setClearRank(status) {
-        cy.get('.profileDropdown__toggle').click();
+        cy.get('.profileDropdown').click();
         cy.get('.dropdown-menu > [href="/settings/profile"]').click({waitForAnimations: false});
         cy.wait(500);
         status !== true ? cy.get('#id_is_clear_rank').uncheck({force: true}).should('not.be.checked') : cy.get('#id_is_clear_rank').check({force: true}).should('be.checked');
@@ -15,7 +15,7 @@ export class Commands {
     }
 
     deleteUser() {
-        cy.get('.profileDropdown__toggle').click();
+        cy.get('.profileDropdown').click();
         cy.get('.dropdown-menu > [href="/settings/profile"]').click();
         cy.wait(500);
         cy.get('a').contains('Remove account').click();
