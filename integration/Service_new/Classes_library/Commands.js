@@ -21,6 +21,21 @@ export class Commands {
         cy.get('a').contains('Remove account').click();
         cy.get('[name=remove_account]').click().should('be.visible');
     }
+    changePassword() {
+        cy.get('.profileDropdown').click();
+        cy.get('.dropdown-menu > [href="/settings/profile"]').click();
+        cy.wait(500);
+        cy.get('a').contains('Change password').click();
+        cy.get('input[name="oldpassword"]')
+            .type(constant.password).should('have.value', constant.password)
+        cy.get('input[name="password1"]')
+            .type(constant.password).should('have.value', constant.password)
+        cy.get('input[name="password2"]')
+            .type(constant.password).should('have.value', constant.password)
+        // cy.waitFor('https://hq.asodesk.com/accounts/password/change');
+        cy.get('.buttonElement--primary').contains('Change Password').should('not.be.disabled').click();
+        cy.get('span[data-notify="message"]').should('contain', 'Password successfully changed')
+    }
 
     chooseTariff(plan) {
 
