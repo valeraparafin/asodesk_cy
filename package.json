@@ -1,14 +1,14 @@
 {
   "name": "cypress-testing",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "cy config",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "runHeadless": "./node_modules/.bin/cypress run --headless",
-    "runHeaded": "./node_modules/.bin/cypress run --headed --browser chrome",
-    "smoke:chrome": "./node_modules/.bin/cypress run  -s 'integration/Smoke_suite/*/*.js,integration/UI/Signup-by-mail-and-delete.js' --headless --browser chrome",
-    "health:chrome": "./node_modules/.bin/cypress run  -s 'integration/Service_new/Google_Play/*.js,integration/Service_new/App_Store/*.js' --headless --browser chrome",
+    "runHeadless": "cypress run --headless",
+    "runHeaded": "cypress run --headed --browser chrome",
+    "smoke:chrome": "cypress run  -s 'integration/Smoke_suite/*/*.js,integration/UI/Signup-by-mail-and-delete.js' --headless --browser chrome",
+    "health:chrome": "cypress run  -s 'integration/Service_new/Google_Play/*.js,integration/Service_new/App_Store/*.js' --headless --browser chrome",
     "report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
     "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
   },
@@ -23,13 +23,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/valeraparafin/asodesk_cy.git"
+    "url": "git+https://github.com/valeraparafin/asodesk_cy.git"
   },
   "dependencies": {
     "ci": "^1.0.0",
-    "cypress": "^8.2.0",
+    "cypress": "^8.3.1",
     "cypress-mailslurp": "^1.1.0",
     "dayjs": "^1.10.6",
     "glob-parent": "^6.0.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/valeraparafin/asodesk_cy/issues"
+  },
+  "homepage": "https://github.com/valeraparafin/asodesk_cy#readme"
 }
