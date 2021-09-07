@@ -8,7 +8,7 @@ Here are some commands
 ### Run smoke suite tests
 
 ```
-$npm run smoke:chrome
+npm run smoke:chrome
 ```
 
 This command includes test kit to check major api handles from tools, like: 
@@ -35,10 +35,20 @@ This command includes test kit to check major api handles from tools, like:
   - Change password in profile
   - Delete user
 
+### Set up Evrironment
+
+```
+($env:CYPRESS_BASE_URL = "https://<env>.asodesk.com")
+```
+
+This command set environment in cy config file.
+
+Info: Some env doesn't support features like `delete user`, so be ready to some tests can failed (def evn is hq)
+
 ### Run healthy suite tests
 
 ```
-$npm run health:chrome
+npm run health:chrome
 ```
 
 This command includes test kit to daily healthy check data in tools, like
