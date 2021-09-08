@@ -35,7 +35,7 @@ This command includes test kit to check major api handles from tools, like:
   - Change password in profile
   - Delete user
 
-### Set up Environment
+### Set up an Environment
 
 ```
 ($env:CYPRESS_BASE_URL = "https://<env>.asodesk.com")
@@ -43,7 +43,8 @@ This command includes test kit to check major api handles from tools, like:
 
 This command set environment in cy config file.
 
-Info: Some env doesn't support features like `delete user`, so be ready to some tests can failed (def evn is hq)
+Info: Some env doesn't support features like `delete user`, so be ready to some tests can failed. (def. evn is `hq`). 
+In this case you should to delete user manually.
 
 ### Run healthy suite tests
 
@@ -62,7 +63,7 @@ This command includes test kit to daily healthy check data in tools, like
  
  ### Github Actions
  
-Every day github starts healthy check tests at 5-00 GMT (8-00 am in Moscow) and pushes it, when finished.
+Every day github actions starts healthy check tests by cron at 5-00 GMT (8-00 am in Moscow) and pushes it to rep when finished.
 Then you can analyse information by using the git public url
 
 ```
