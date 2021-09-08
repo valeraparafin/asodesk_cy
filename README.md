@@ -54,7 +54,7 @@ npm run health:chrome
 This command includes test kit to daily healthy check data in tools, like
 
  - Comparative Report (clear rank include)
- - Category Ranking (favorites locals)
+ - Category Ranking (favorites locales)
  - Top-Charts by category
  - Compare Top-Charts to Category Ranking
  - Trending Searches
