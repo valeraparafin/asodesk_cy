@@ -35,7 +35,7 @@ This command includes test kit to check major api handles from tools, like:
   - Change password in profile
   - Delete user
 
-### Set up Evrironment
+### Set up Environment
 
 ```
 ($env:CYPRESS_BASE_URL = "https://<env>.asodesk.com")
