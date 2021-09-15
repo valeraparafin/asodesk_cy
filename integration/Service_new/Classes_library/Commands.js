@@ -21,20 +21,43 @@ export class Commands {
         cy.get('a').contains('Remove account').click();
         cy.get('[name=remove_account]').click().should('be.visible');
     }
+
     changePassword() {
         cy.get('.profileDropdown').click();
         cy.get('.dropdown-menu > [href="/settings/profile"]').click();
         cy.wait(500);
         cy.get('a').contains('Change password').click();
         cy.get('input[name="oldpassword"]')
-            .type(constant.password).should('have.value', constant.password)
+            .type(constant.password).should('have.value', constant.password);
         cy.get('input[name="password1"]')
-            .type(constant.password).should('have.value', constant.password)
+            .type(constant.password).should('have.value', constant.password);
         cy.get('input[name="password2"]')
-            .type(constant.password).should('have.value', constant.password)
+            .type(constant.password).should('have.value', constant.password);
         // cy.waitFor('https://hq.asodesk.com/accounts/password/change');
         cy.get('.buttonElement--primary').contains('Change Password').should('not.be.disabled').click();
         cy.get('span[data-notify="message"]').should('contain', 'Password successfully changed')
+    }
+
+    changeForgottenPassword() {
+        cy.url().should('include', 'set-password/');
+        cy.get('input[name="password1"]')
+            .type(constant.password).should('have.value', constant.password);
+        cy.get('input[name="password2"]')
+            .type(constant.password).should('have.value', constant.password);
+        cy.get('.buttonElement--primary').contains('Change Password').should('not.be.disabled').click();
+        cy.get('span[data-notify="message"]').should('contain', 'Password successfully changed')
+        cy.wait(1000);
+        cy.url().should('contain', 'asodesk.com/ru/')
+    }
+
+    forgotPassword(email) {
+        cy.get('a').contains('Forgot Password?').click();
+        cy.url().should('contain','accounts/password/reset');
+        cy.get('.accountTitle').should('contain', 'Password Reset').and('be.visible')
+        cy.get('input[name="email"]')
+            .type(email).should('have.value', email);
+        cy.get('.buttonElement--primary').contains('reset my password',{matchCase:false}).should('not.be.disabled').click();
+
     }
 
     chooseTariff(plan) {
