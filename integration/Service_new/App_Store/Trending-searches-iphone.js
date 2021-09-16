@@ -55,12 +55,12 @@ describe('Trending Searches Health-check.', () => {
                 }
             })
 
-            context('Apps per keyword is greater than 2', () => {
+            context('Apps per keyword within 1..3', () => {
                 for (let f = 0; f <= 7; f++) {
                     it('Ojbect #' + f + ' has 4 keywords with 3 apps', () => {
                         for (let i = 0; i <= 3; i++) {
                             let apps = resp.results[f].keywords[i].apps.length;
-                            expect(apps).to.be.greaterThan(2);
+                            expect(apps).to.be.within(1,3);
                         }
                     })
                 }
