@@ -11,7 +11,7 @@ describe("User case sign up, change password and delete account", function () {
     // use cypress-mailslurp plugin to create or use created an email address before test
     before(function () {
         return cy.mailslurp()
-            .then(mailslurp => mailslurp.getInbox('ac0c15f1-5ae9-4b7f-8bd4-02ecbc3c2f6d'))
+            .then(mailslurp => mailslurp.getInbox('9c241587-6cac-4d5e-a3c4-c1dd264890bd'))
             .then(inbox => {
                 // save inbox id and email address to this (make sure you use function and not arrow syntax)
                 cy.wrap(inbox.id).as('inboxId')
