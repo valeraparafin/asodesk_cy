@@ -1,3 +1,23 @@
+# Installation
+
+  - Install [Node.js](https://nodejs.org/) 12 or 14 and above. 
+  - Then open terminal if isn't and navigate to path with [this](https://github.com/valeraparafin/asodesk_cy.git) cloned project.
+```
+cd /your/project/path
+```
+  - Use `npm init`
+
+  - Install [Cypress](https://cypress.io/) in path with project.
+
+ ```
+ npm install cypress
+ ```
+ - Do some test with using command. 
+ ```
+ npx cypress open 
+ ```
+ If cypress will open, well, it means you're done here and could use commands bellow
+
 # Common things and commands
 
 Here are some commands
@@ -43,8 +63,7 @@ This command includes test kit to check major api handles from tools, like:
 
 This command set environment in cy config file.
 
-Info: Some env doesn't support features like `delete user`, so be ready to some tests can failed. (def. evn is `hq`). 
-In this case you should to delete user manually.
+> Note: Some env doesn't support features like `delete user`, so be ready to some tests can failed. (def. evn is `hq`). In this case you should to delete user manually.
 
 ### Run healthy suite tests
 
