@@ -5,6 +5,7 @@ import { Auth } from ".//Auth";
 const constant = new Constants();
 const auth = new Auth();
 
+
 export class Commands {
     frontendSettings = null;
     sidebarInfo = null;
@@ -20,10 +21,17 @@ export class Commands {
 
     deleteUser() {
         cy.get('.profileDropdown').click();
+        cy.wait(500);
         cy.get('.dropdown-menu > [href="/settings/profile"]').click();
         cy.wait(500);
-        cy.get('a').contains('Remove account').click({ force: true });
-        cy.get('[name=remove_account]').click({ force: true }).should('be.visible');
+        cy.get('a').contains('Remove account').as('removeLink')
+        cy.waitFor('@removeLink')
+        cy.get('@removeLink').click();
+        cy.wait(500);
+        cy.get('[name=remove_account]').as('removeModal').should('be.visible');
+        cy.waitFor('@removeModal')
+        cy.get('@removeModal').click()
+        cy.url().should('include', 'accounts/login/');
     }
 
     changePassword() {
