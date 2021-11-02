@@ -63,7 +63,7 @@ This command includes test kit to check major api handles from tools, like:
 
 This command set environment in cy config file.
 
-> Note: Some env doesn't support features like `delete user`, so be ready to some tests can failed. (def. evn is `hq`). In this case you should to delete user manually.
+> Note: Some env doesn't support features like `delete user`, so be ready to some tests can failed. (def. env is `hq`). In this case you should to delete user manually.
 
 ### Run healthy suite tests
 
