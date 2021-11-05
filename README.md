@@ -52,6 +52,7 @@ This command includes test kit to check major api handles from tools, like:
   - Sign up user by email
   - Confirm email
   - Choose tariff and complete registration (def. free)
+  - Change password by email
   - Change password in profile
   - Delete user
 
