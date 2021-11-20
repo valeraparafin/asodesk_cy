@@ -159,6 +159,7 @@ jobs:
       matrix:
         # run copies of the current job in parallel
         containers: [1, 2]
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
 
