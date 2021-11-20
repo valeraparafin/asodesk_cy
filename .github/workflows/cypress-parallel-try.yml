@@ -34,6 +34,9 @@ jobs:
         with:
           record: true
           parallel: true
+        env:
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Install a project with a clean slate
         run: |
           npm ci
@@ -43,9 +46,6 @@ jobs:
       - name: Run Cypress tests
         run: npm run health:chrome
         continue-on-error: true
-        env:
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Merge test results into one
         run: npm run report:merge
       - name: Generate HTML report
@@ -79,7 +79,6 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           config: "viewportWidth=375,viewportHeight=667"
-          start: npm start:ci
           wait-on-timeout: 120
           browser: chrome
           record: true
