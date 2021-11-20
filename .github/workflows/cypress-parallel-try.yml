@@ -84,7 +84,7 @@ jobs:
           record: true
           parallel: true
           group: "UI - Chrome - Mobile"
-          spec: "integration/Smoke_suite/*/*.js"
+          run: npm run smoke:chrome
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
