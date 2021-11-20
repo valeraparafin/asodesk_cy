@@ -38,7 +38,7 @@ jobs:
           $(npm bin)/cypress cache list
           $(npm bin)/cypress verify
       - name: Run Cypress tests
-        run: npm run health:chrome
+        uses: npm run health:chrome
         with:
           record: true
           parallel: true
