@@ -39,10 +39,10 @@ jobs:
           $(npm bin)/cypress verify
       - name: Run Cypress tests
         run: npm run health:chrome
-        continue-on-error: true
         with:
           record: true
           parallel: true
+        continue-on-error: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     #    - name: Copy test execution videos
