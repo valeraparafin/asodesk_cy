@@ -18,8 +18,8 @@ on:
 jobs:
   cypress-e2e-chrome87:
     name: E2E Run on Chrome
-    runs-on: ubuntu-latest
-    container: cypress/browsers:node17.1.0-chrome87-ff82
+    runs-on: ubuntu-18.04
+    container: cypress/browsers:node12.18.3-chrome87-ff82
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -29,34 +29,34 @@ jobs:
       matrix:
         # run 3 copies of the current job in parallel
         containers: [1, 2, 3, 4]
-        steps:
-        - uses: actions/checkout@v2
-        - name: Install a project with a clean slate
-          run: |
-            npm ci
-            $(npm bin)/cypress cache path
-            $(npm bin)/cypress cache list
-            $(npm bin)/cypress verify
-        - name: Run Cypress tests
-          run: npm run health:chrome
-          continue-on-error: true
-          with:
-            record: true
-            parallel: true
-          env:
-            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install a project with a clean slate
+        run: |
+          npm ci
+          $(npm bin)/cypress cache path
+          $(npm bin)/cypress cache list
+          $(npm bin)/cypress verify
+      - name: Run Cypress tests
+        run: npm run health:chrome
+        continue-on-error: true
+        with:
+          record: true
+          parallel: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     #    - name: Copy test execution videos
     #      run: |
     #        mkdir public
     #        cp -r cypress/videos public/videos
-        - name: Merge test results into one
-          run: npm run report:merge
-        - name: Generate HTML report
-          run: npm run report:generate
-        - name: Deploy report page
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
-            publish_dir: ./public
-            user_name: 'github-actions[bot]'
-            user_email: 'github-actions[bot]@users.noreply.github.com'
+      - name: Merge test results into one
+        run: npm run report:merge
+      - name: Generate HTML report
+        run: npm run report:generate
+      - name: Deploy report page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
+          publish_dir: ./public
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
