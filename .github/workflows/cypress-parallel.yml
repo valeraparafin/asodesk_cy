@@ -42,6 +42,12 @@ jobs:
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      - name: Save built folders 🆙
+        uses: actions/upload-artifact@v2
+        with:
+          name: built
+          path: |
+            public
           
   merge-in-one:
     needs: ui-chrome-mobile-tests
@@ -50,13 +56,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
-      - name: Install a project with a clean slate
-        run: |
-          npm ci
-          $(npm bin)/cypress cache path
-          $(npm bin)/cypress cache list
-          $(npm bin)/cypress verify
+        
+      - name: Download built folders ⏬
+        uses: actions/download-artifact@v2
+        with:
+          name: built
         
       - name: Merge test results into one
         run: npm run report:merge
