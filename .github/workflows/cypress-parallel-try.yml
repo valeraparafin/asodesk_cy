@@ -48,7 +48,7 @@ jobs:
         continue-on-error: true
 
   merge-in-one:
-      needs:cypress-e2e-chrome87
+      needs: cypress-e2e-chrome87
     - name: Merge test results into one
       run: npm run report:merge
     - name: Generate HTML report
