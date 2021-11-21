@@ -16,72 +16,21 @@ on:
      
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    container: cypress/browsers:node14.17.0-chrome88-ff89
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Cypress install
-        uses: cypress-io/github-action@v2
-        with:
-          runTests: false
-      # report machine parameters
-     # - run: yarn cypress info
-     # - run: node -p 'os.cpus()'
-     # - run: yarn types
-     # - run: yarn lint
-     # - run: yarn test:unit:ci
-     # - run: yarn build:ci
-
-      - name: Save build folder
-        uses: actions/upload-artifact@v2
-        with:
-          name: build
-          if-no-files-found: error
-          path: build
-
-  install-windows:
-    runs-on: windows-2019
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Cypress install
-        uses: cypress-io/github-action@v2
-        with:
-          runTests: false
-      # report machine parameters
-     # - run: npm info cypress
-     # - run: node -p 'os.cpus()'
-     # - run: yarn types
-     # - run: yarn lint
-     # - run: yarn test:unit:ci
-     # - run: yarn build:ci
-
-      - name: Save build folder
-        uses: actions/upload-artifact@v2
-        with:
-          name: build
-          if-no-files-found: error
-          path: build
-          
   cypress-e2e-chrome87:
     name: E2E Run on Chrome
-    runs-on: ubuntu-18.04
-    container: cypress/browsers:node12.18.3-chrome87-ff82
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node14.17.0-chrome88-ff89
     strategy:
-      # when one test fails, DO NOT cancel the other
-      # containers, because this will kill Cypress processes
-      # leaving the Dashboard hanging ...
-      # https://github.com/cypress-io/github-action/issues/48
       fail-fast: false
       matrix:
         # run 3 copies of the current job in parallel
-        containers: [1, 2]
+        containers: [1, 2, 3, 4]
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: "Smoke tests suite - chrome" 
+        uses: cypress-io/github-action@v2
         with:
           record: true
           parallel: true
@@ -95,20 +44,23 @@ jobs:
           $(npm bin)/cypress cache list
           $(npm bin)/cypress verify
       - name: Run Cypress tests
-        run: npm run health:chrome
+        run: npm run smoke:chrome
         continue-on-error: true
-      - name: Merge test results into one
-        run: npm run report:merge
-      - name: Generate HTML report
-        run: npm run report:generate
-      - name: Deploy report page
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          
+
+  merge-in-one:
+      needs:cypress-e2e-chrome87
+    - name: Merge test results into one
+      run: npm run report:merge
+    - name: Generate HTML report
+      run: npm run report:generate
+    - name: Deploy report page
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        
   ui-chrome-mobile-tests:
     runs-on: ubuntu-latest
     container: cypress/browsers:node14.17.0-chrome88-ff89
@@ -134,27 +86,12 @@ jobs:
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-      - name: Merge test results into one
-        run: npm run report:merge
-      - name: Generate HTML report
-        run: npm run report:generate
-      - name: Deploy report page
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+
         
   ui-windows-tests:
     timeout-minutes: 40
     runs-on: windows-2019
-    needs: install-windows
     strategy:
-      # when one test fails, DO NOT cancel the other
-      # containers, because this will kill Cypress processes
-      # leaving the Dashboard hanging ...
-      # https://github.com/cypress-io/github-action/issues/48
       fail-fast: false
       matrix:
         # run copies of the current job in parallel
@@ -180,14 +117,3 @@ jobs:
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-      - name: Merge test results into one
-        run: npm run report:merge
-      - name: Generate HTML report
-        run: npm run report:generate
-      - name: Deploy report page
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
