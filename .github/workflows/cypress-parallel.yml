@@ -38,7 +38,7 @@ jobs:
           record: true
           parallel: true
           group: "UI - Chrome - Mobile"
-          spec: "integration/Smoke_suite/Env_is_alive/CR-is-alive.js"
+          spec: "integration/Smoke_suite/*/*.js"
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
