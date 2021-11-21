@@ -48,19 +48,22 @@ jobs:
         continue-on-error: true
 
   merge-in-one:
-      needs: cypress-e2e-chrome87
-    - name: Merge test results into one
-      run: npm run report:merge
-    - name: Generate HTML report
-      run: npm run report:generate
-    - name: Deploy report page
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
+    needs: cypress-e2e-chrome87
+    steps:
+    
+      - name: Merge test results into one
+        run: npm run report:merge
         
+      - name: Generate HTML report
+        run: npm run report:generate
+      - name: Deploy report page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+            
   ui-chrome-mobile-tests:
     runs-on: ubuntu-latest
     container: cypress/browsers:node14.17.0-chrome88-ff89
