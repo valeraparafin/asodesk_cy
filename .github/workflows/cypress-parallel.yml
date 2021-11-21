@@ -24,9 +24,7 @@ jobs:
       matrix:
         # run copies of the current job in parallel
         containers: [1, 2, 3, 4]
-      include: 
-        continue-on-error: true
-    continue-on-error: ${{ matrix.continue-on-error }}
+    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
