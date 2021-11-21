@@ -24,9 +24,19 @@ jobs:
       matrix:
         # run copies of the current job in parallel
         containers: [1, 2, 3, 4]
+      include: 
+        continue-on-error: true
+    continue-on-error: ${{ matrix.continue-on-error }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
+      - name: Install a project with a clean slate
+      run: |
+        npm ci
+        $(npm bin)/cypress cache path
+        $(npm bin)/cypress cache list
+        $(npm bin)/cypress verify
 
       - name: "UI Tests - Chrome - Mobile"
         uses: cypress-io/github-action@v2
@@ -41,16 +51,21 @@ jobs:
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          
   merge-in-one:
     needs: ui-chrome-mobile-tests
     runs-on: ubuntu-latest
     container: cypress/browsers:node14.17.0-chrome88-ff89
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
       - name: Merge test results into one
         run: npm run report:merge
         
       - name: Generate HTML report
         run: npm run report:generate
+        
       - name: Deploy report page
         uses: peaceiris/actions-gh-pages@v3
         with:
