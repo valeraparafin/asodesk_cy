@@ -49,6 +49,7 @@ jobs:
           name: built
           path: |
             cypress
+            results
           
   merge-and-deploy:
     needs: ui-chrome-mobile-tests
