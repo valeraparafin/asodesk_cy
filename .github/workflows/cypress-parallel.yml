@@ -83,7 +83,7 @@ jobs:
             results
                       
   merge-and-deploy:
-    needs: ui-chrome-mobile-tests
+    needs: [ui-chrome-mobile-tests, ui-windows-tests]
     runs-on: ubuntu-latest
     container: cypress/browsers:node14.17.0-chrome88-ff89
     steps:
