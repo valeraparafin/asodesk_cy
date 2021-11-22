@@ -76,6 +76,7 @@ jobs:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ github.token }}
+        continue-on-error: true
       - name: Save built folders 🆙
         uses: actions/upload-artifact@v2
         with:
