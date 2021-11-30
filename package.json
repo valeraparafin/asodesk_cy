@@ -4,6 +4,7 @@
   "description": "cy config",
   "main": "index.js",
   "scripts": {
+    "cy" : "npx cypress open",
     "test": "echo \"Error: no test specified\" && exit 1",
     "runHeadless": "cypress run --headless",
     "runHeaded": "cypress run --headed --browser chrome",
