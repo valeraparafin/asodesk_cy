@@ -34,6 +34,16 @@ export class Auth {
         //cause we need a delay to get complete data, before send request
     };
 
+    hijack(Email) {
+
+        if (Email != null) {
+            cy.visit('/' + 'hijack/email/' + Email + '/');
+
+        } else {
+            cy.visit('/' + 'hijack/email/' + this.constant.login + '/');
+        }
+    };
+
     signUp(url, Email) {
         if (url != null) {
             cy.visit(url);
