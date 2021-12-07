@@ -7,7 +7,7 @@ export class Auth {
 
     /////// This section use front-end ////////
 
-    signIn(url, Email) {
+    signIn(Email, url) {
         if (url != null) {
             cy.visit(url);
         } else {
@@ -44,7 +44,7 @@ export class Auth {
         }
     };
 
-    signUp(url, Email) {
+    signUp(Email, url) {
         if (url != null) {
             cy.visit(url);
         } else {
@@ -75,23 +75,21 @@ export class Auth {
 
     /////// This section use API ////////
 
-    obtain() {
+    obtain(Email) {
         cy.request({
             method: 'POST',
             url: 'https://hq.asodesk.com/api/auth/obtain', // baseUrl is prepended to url
             form: true, // indicates the body should be form urlencoded and sets Content-Type: application/x-www-form-urlencoded headers
             body: {
-                username: this.constant.login,
+                username: Email !== null ? Email : this.constant.login,
                 password: this.constant.password,
             }
         })
             .then((response) => {
-                // console.log(response.body);
                 assert.equal(response.status, 200);
                 let jsonData = response.body;
-                this.token = jsonData.access;
+                this.token = 'Token: ' + jsonData.access;
                 chai.expect(this.token).to.not.be.eq(null);
-                //console.log(jsonData);
             })
     }
 }
