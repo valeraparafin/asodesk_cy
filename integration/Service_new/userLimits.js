@@ -21,7 +21,6 @@ for (let account in accounts.Plans) {
         })
 
         it('Get sidebar info', () => {
-            // cy.setCookie('Authorization', auth.token);
             // info = commands.getSidebarInfo();
             getSidebarInfo();
         });

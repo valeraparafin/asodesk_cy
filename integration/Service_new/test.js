@@ -5,12 +5,12 @@ const auth = new Auth()
 const CountryID = ["bb", "uz", "ch", "es", "lb", "ng", "mx", "eg", "cm", "uy", "th", "my", "bm", "cn", "gb", "il", "ec", "is", "hk", "in", "tw", "si", "nz", "ua", "cz", "do", "kw", "tr", "kr", "rs", "it", "vn", "sk", "sv", "no", "bh", "al", "ca", "kz", "qa", "ph", "pe", "by", "sa", "fr", "ge", "om", "kg", "ke", "hr", "kh", "ve", "ie", "pa", "az", "dz", "gt", "am", "py", "mt", "au", "be", "ae", "at", "hn", "za", "nl", "ru", "cy", "gh", "ar", "sg", "mo", "lk", "dk", "ni", "br", "bg", "pk", "lt", "sn", "cl", "us", "cr", "mg", "ao", "lu", "pt", "fi", "pl", "de", "jp", "co", "ee", "hu", "gr", "ug", "se", "tn", "lv", "ro", "id", "bo"]
 
 before('Sign in by admin', () => {
-    auth.signIn(null, 'iparafin@gmail.com')
+    auth.signIn('iparafin@gmail.com')
     cy.wait(1000)
     auth.getToken()
     cy.wait(500)
 })
-
+/*
 it('Use hijack here', function () {
     cy.setCookie('Authorization', auth.token);
     cy.wait(500)
@@ -26,8 +26,8 @@ it('should ', function () {
     auth.hijack('tech@zorra.com')
     cy.wait(500)
     getTrackedApps()
-});
-
+}); */
+/*
 function getTrackedApps() {
     cy.request({
         method: 'GET',
@@ -53,18 +53,31 @@ function getTrackedApps() {
 
             }
         })
-}
+} */
+
+it('Intercept', () => {
+    cy.intercept('GET', 'api/referral-program'
+        , {
+            body: {bonus_credit: "10.00"}
+        }).as('apps'), (request) => {
+        console.log(request.body)
+    }
+
+    cy.wait('@apps')
+    console.log()
+
+//     {
+//         body: {
+//             count:99
+//         }
 //
-// it('Intercept', () => {
-//     cy.intercept({
-//             method: 'GET',
-//             url: 'https://hq.asodesk.com/api/get-app-count'
-//         }, [{id:1,name:'Name'}],
-//         {
-//             forceNetworkError: true
-//         })
-//
-// })
+//     }
+// ),
+//     (response) => {
+//         console.log(response)
+//     }
+
+})
 
 
 // it('Find a nubmer', () => {
