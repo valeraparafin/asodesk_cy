@@ -36,9 +36,6 @@ export class Plan {
     pro_700_500 = 'testgetems+pro700_500@gmail.com';
     pro_1000_500 = 'testgetems+pro1000_500@gmail.com';
     pro_1500_500 = 'testgetems+pro1500_500@gmail.com';
-    pro_700_1000 = 'testgetems+pro700_500@gmail.com';
-    pro_1000_1000 = 'testgetems+pro1000_500@gmail.com';
-    pro_1500_1000 = 'testgetems+pro1500_500@gmail.com';
     pro_reviews_500 = 'testgetems+pro_review_500@gmail.com';
     pro_reviews_1000 = 'testgetems+pro_review_1000@gmail.com';
 
@@ -72,9 +69,6 @@ export class Plan {
         'Pro_ASO_700+Reviews_500': this.pro_700_500,
         'Pro_ASO_1000+Reviews_500': this.pro_1000_500,
         'Pro_ASO_1500+Reviews_500': this.pro_1500_500,
-        'Pro_ASO_700+Reviews_1000': this.pro_700_1000,
-        'Pro_ASO_1000+Reviews_1000': this.pro_1000_1000,
-        'Pro_ASO_1500+Reviews_1000': this.pro_1500_1000,
         'Pro_Reviews_500': this.pro_reviews_500,
         'Pro_Reviews_1000': this.pro_reviews_1000,
 

@@ -75,7 +75,7 @@ export class Tariffs {
             app_limit: 15,
             keyword_limit: 700,
             teammates_limit: 5,
-            replies_limit: 300,
+            replies_limit: 100,
             keyword_stats_limit: 2100,
             tabs_available: 10
         },
@@ -83,7 +83,7 @@ export class Tariffs {
             app_limit: 15,
             keyword_limit: 1000,
             teammates_limit: 5,
-            replies_limit: 300,
+            replies_limit: 100,
             keyword_stats_limit: 3000,
             tabs_available: 10
         },
@@ -91,7 +91,7 @@ export class Tariffs {
             app_limit: 15,
             keyword_limit: 1500,
             teammates_limit: 5,
-            replies_limit: 300,
+            replies_limit: 100,
             keyword_stats_limit: 4500,
             tabs_available: 10
         },
@@ -108,7 +108,7 @@ export class Tariffs {
             keyword_limit: 1000,
             teammates_limit: 5,
             replies_limit: 500,
-            keyword_stats_limit: 300,
+            keyword_stats_limit: 3000,
             tabs_available: 10
         },
         'Pro_ASO_1500+Reviews_500': {
@@ -116,30 +116,6 @@ export class Tariffs {
             keyword_limit: 1500,
             teammates_limit: 5,
             replies_limit: 500,
-            keyword_stats_limit: 4500,
-            tabs_available: 10
-        },
-        'Pro_ASO_700+Reviews_1000': {
-            app_limit: 15,
-            keyword_limit: 700,
-            teammates_limit: 5,
-            replies_limit: 1000,
-            keyword_stats_limit: 2100,
-            tabs_available: 10
-        },
-        'Pro_ASO_1000+Reviews_1000': {
-            app_limit: 15,
-            keyword_limit: 1000,
-            teammates_limit: 5,
-            replies_limit: 1000,
-            keyword_stats_limit: 3000,
-            tabs_available: 10
-        },
-        'Pro_ASO_1500+Reviews_1000': {
-            app_limit: 15,
-            keyword_limit: 1500,
-            teammates_limit: 5,
-            replies_limit: 1000,
             keyword_stats_limit: 4500,
             tabs_available: 10
         },
