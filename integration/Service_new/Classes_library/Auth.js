@@ -45,6 +45,7 @@ export class Auth {
     };
 
     signUp(Email) {
+        cy.visit('/');
         cy.get('a').contains('Sign Up').click();
         cy.get("[name=first_name]").type(this.constant.name)
         cy.get("[name=email]").type(Email).trigger('change');
