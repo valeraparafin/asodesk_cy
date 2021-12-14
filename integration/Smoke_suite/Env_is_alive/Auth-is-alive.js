@@ -14,7 +14,7 @@ describe('Auth should be alive and main requests should response 200', function 
             url: 'api/available_accounts/',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -30,7 +30,7 @@ describe('Auth should be alive and main requests should response 200', function 
                 url: 'api/request-info',
                 headers: {
                     'accept': 'application/json',
-                    'Authorization': 'Token:' + auth.token,
+                    'Authorization': auth.token,
                 },
                 response: []
             })
@@ -47,7 +47,7 @@ describe('Auth should be alive and main requests should response 200', function 
             url: 'api/tracked-apps?country=ru',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

@@ -52,7 +52,7 @@ describe('Android Top #1 from Top-Chart equals CatRank', () => {
                             url: 'api/category-ranking/chart?category=' + categoryId + '&category_list=free&country=' + country + '&device_type=' + deviceType + '&storeids=' + storeID + '&timestamp_since=' + prevDaysDate,
                             headers: {
                                 'accept': 'application/json',
-                                'Authorization': 'Token:' + auth.token,
+                                'Authorization': auth.token,
                             },
                             response: []
                         })

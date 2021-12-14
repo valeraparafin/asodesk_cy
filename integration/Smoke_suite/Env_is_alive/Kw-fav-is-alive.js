@@ -14,7 +14,7 @@ describe('Keyword Favorite should be alive and main requests should response 200
             url: 'api/1336519654/keyword-analysis/keyword-favorite/?from_timestamp=1621630800&to_timestamp=1624395599&countries=&keyword_storetype=iphone',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

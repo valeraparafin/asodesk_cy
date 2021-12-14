@@ -20,7 +20,7 @@ describe('CR should be alive and main requests should response 200', function ()
             url: 'api/ru/1336519654/comparative-report-chart?time_since=' + prevDaysDate + '&time_till=' + toDaysDate,
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -39,7 +39,7 @@ describe('CR should be alive and main requests should response 200', function ()
             url: 'api/ru/1336519654/comparative-report?from_timestamp=' + prevDaysDate + '&to_timestamp=' + toDaysDate,
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -56,7 +56,7 @@ describe('CR should be alive and main requests should response 200', function ()
             url: 'api/ru/1336519654/comparative-report-metas?from_timestamp=' + prevDaysDate + '&to_timestamp=' + toDaysDate,
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

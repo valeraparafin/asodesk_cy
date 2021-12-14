@@ -14,7 +14,7 @@ describe('Activity Log should be alive and main requests should response 200', f
             url: '/settings/activity_log/',
             headers: {
                 'accept': 'application/html+xml',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -29,7 +29,7 @@ describe('Activity Log should be alive and main requests should response 200', f
             url: '/settings/activity_log/list',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

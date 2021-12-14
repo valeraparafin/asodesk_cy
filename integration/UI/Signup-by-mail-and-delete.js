@@ -24,7 +24,7 @@ describe("User case sign up, change password and delete account", function () {
         // get wrapped email address and assert contains a mailslurp email address
         chai.expect(this.emailAddress).to.contain("@mailslurp");
         // visit the application with generated email
-        auth.signUp(null, this.emailAddress);
+        auth.signUp(this.emailAddress);
     });
 
     it('02 - can receive confirmation code and activate account', function () {

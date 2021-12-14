@@ -14,7 +14,7 @@ describe('Keyword Explorer should be alive and main requests should response 200
             url: 'api/ru/1336519654/keyword-explorer/search?device_type=iphone&keyword=tinder',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -31,7 +31,7 @@ describe('Keyword Explorer should be alive and main requests should response 200
             url: 'api/ru/1336519654/keyword-explorer/suggestions?device_type=iphone&keyword=tinder',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -48,7 +48,7 @@ describe('Keyword Explorer should be alive and main requests should response 200
             url: 'api/ru/com.bpmobile.iscanner.free/keyword-explorer/related?device_type=googleplay&keyword=%D0%BA%D0%B0%D0%BF%D0%B8%D1%82%D0%B0%D0%BB',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

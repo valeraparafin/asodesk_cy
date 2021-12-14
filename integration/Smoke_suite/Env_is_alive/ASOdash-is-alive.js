@@ -21,7 +21,7 @@ describe('ASO dashboard should be alive and main requests should response 200', 
             url: 'api/1336519654/dashboard?country=vn&metrics=impressionsTotalUnique,units&time_since=' + monthAgo + '&time_till=' + toDaysDate,
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

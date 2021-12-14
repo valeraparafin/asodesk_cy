@@ -14,7 +14,7 @@ describe('Keyword Auto Suggestions should be alive and main requests should resp
             url: 'api/ru/811057180/kas/most-popular-keywords?only_positive_ts=1&without_user_keywords=1',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -31,7 +31,7 @@ describe('Keyword Auto Suggestions should be alive and main requests should resp
             url: 'api/ru/811057180/kas/competitor-best-keywords?only_positive_ts=1&without_user_keywords=1',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -48,7 +48,7 @@ describe('Keyword Auto Suggestions should be alive and main requests should resp
             url: 'api/ru/811057180/kas/long-tail-keywords?only_positive_ts=1&without_user_keywords=1',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -65,7 +65,7 @@ describe('Keyword Auto Suggestions should be alive and main requests should resp
             url: 'api/ru/811057180/kas/least-competitive-keywords?only_positive_ts=1&without_user_keywords=1',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -82,7 +82,7 @@ describe('Keyword Auto Suggestions should be alive and main requests should resp
             url: 'api/ru/811057180/kas/good-for-keyword-boosting?only_positive_ts=1&without_user_keywords=1',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -99,7 +99,7 @@ describe('Keyword Auto Suggestions should be alive and main requests should resp
             url: 'api/ru/811057180/kas/expected-to-be-trending?only_positive_ts=0&without_user_keywords=0',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

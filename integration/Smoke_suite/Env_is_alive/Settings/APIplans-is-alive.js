@@ -14,7 +14,7 @@ describe('API Plans should be alive and main requests should response 200', func
             url: '/settings/api-pricing/',
             headers: {
                 'accept': 'application/html+xml',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

@@ -14,7 +14,7 @@ describe('Billing history should be alive and main requests should response 200'
             url: '/settings/billing/',
             headers: {
                 'accept': 'application/html+xml',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -29,7 +29,7 @@ describe('Billing history should be alive and main requests should response 200'
             url: '/api/settings/invoices/',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -46,7 +46,7 @@ describe('Billing history should be alive and main requests should response 200'
             url: 'api/settings/billing-information/',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -63,7 +63,7 @@ describe('Billing history should be alive and main requests should response 200'
             url: '/recurring-profiles/',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
