@@ -1,5 +1,5 @@
-import { Constants } from ".//Constants";
-import { Auth } from ".//Auth";
+import {Constants} from ".//Constants";
+import {Auth} from ".//Auth";
 
 
 const constant = new Constants();
@@ -12,9 +12,9 @@ export class Commands {
 
     setClearRank(status) {
         cy.get('.profileDropdown').click();
-        cy.get('.dropdown-menu > [href="/settings/profile"]').click({ waitForAnimations: false });
+        cy.get('.dropdown-menu > [href="/settings/profile"]').click({waitForAnimations: false});
         cy.wait(500);
-        status !== true ? cy.get('#id_is_clear_rank').uncheck({ force: true }).should('not.be.checked') : cy.get('#id_is_clear_rank').check({ force: true }).should('be.checked');
+        status !== true ? cy.get('#id_is_clear_rank').uncheck({force: true}).should('not.be.checked') : cy.get('#id_is_clear_rank').check({force: true}).should('be.checked');
         cy.wait(500);
         cy.get(':nth-child(7) > .col-xs-12 > .btn-success').click();
     }
@@ -68,7 +68,7 @@ export class Commands {
         cy.get('.accountTitle').should('contain', 'Password Reset').and('be.visible');
         cy.get('input[name="email"]')
             .type(email).should('have.value', email);
-        cy.get('.buttonElement--primary').contains('reset my password', { matchCase: false }).should('not.be.disabled').click();
+        cy.get('.buttonElement--primary').contains('reset my password', {matchCase: false}).should('not.be.disabled').click();
 
     }
 
@@ -105,8 +105,7 @@ export class Commands {
     checkSidebarStatus(status) {
         if (status === false) {
             cy.get('aside').should('have.class', 'sidebar_sidebarClose__2ZR_C')
-        }
-        else if (status === true) {
+        } else if (status === true) {
             cy.get('aside').should('have.not.class', 'sidebar_sidebarClose__2ZR_C')
         }
     }
@@ -140,16 +139,20 @@ export class Commands {
                 chai.expect(this.sidebarInfo).to.not.be.undefined
             })
     }
+
     openSidebar(isOpen) {
         isOpen === false ? cy.get('.bg-gray-50 > .cursor-pointer > .icon').click() : cy.log('it`s already opened')
     }
+
     closeSidebar(isClose) {
         isClose === true ? cy.get('.bg-gray-50 > .cursor-pointer > .icon').click() : cy.log('it`s already closed')
     }
+
     expandMenu(isExpand, name) {
-        isExpand === true ? cy.contains(name, { matchCase: false }).click({ force: true }) : cy.log('it`s already expanded')
+        isExpand === true ? cy.contains(name, {matchCase: false}).click({force: true}) : cy.log('it`s already expanded')
     }
+
     collapsMenu(isCollaps, name) {
-        isCollaps === false ? cy.contains(name, { matchCase: false }).click({ force: true }) : cy.log('it`s already collapsed')
+        isCollaps === false ? cy.contains(name, {matchCase: false}).click({force: true}) : cy.log('it`s already collapsed')
     }
 }

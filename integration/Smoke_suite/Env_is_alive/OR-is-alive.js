@@ -14,7 +14,7 @@ describe('OR should be alive and main requests should response 200', function ()
             url: 'api/ru/811057180/organic-report',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -31,7 +31,7 @@ describe('OR should be alive and main requests should response 200', function ()
             url: 'api/ru/811057180/comparative-report-basic',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -48,7 +48,7 @@ describe('OR should be alive and main requests should response 200', function ()
             url: 'api/ru/811057180/organic-report-history?interval=30d',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

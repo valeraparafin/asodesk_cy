@@ -541,7 +541,7 @@ describe('Match label', function () {
         //     followRedirect: false, log: true,
         //     url: '/' + 'api/countries-languages',
         //     'accept': 'application/json',
-        //     'Authorization': 'Token:' + auth.token,
+        //     'Authorization': auth.token,
         //     response: []
         // }).then((response) => {
         //     languages = response.body;

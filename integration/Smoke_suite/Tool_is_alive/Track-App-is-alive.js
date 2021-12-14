@@ -15,7 +15,7 @@ describe('Search & Track/UnTrack Application should be alive and requests should
             url: 'api/ru/search-application?request_id=1627465316072&query=трек+номер',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -33,7 +33,7 @@ describe('Search & Track/UnTrack Application should be alive and requests should
             url: 'api/ru/track-app-by-url',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             body: {
                 "app_url": AppUrl,
@@ -52,7 +52,7 @@ describe('Search & Track/UnTrack Application should be alive and requests should
             url: 'api/ru/' + AppId + '/untrack-app',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

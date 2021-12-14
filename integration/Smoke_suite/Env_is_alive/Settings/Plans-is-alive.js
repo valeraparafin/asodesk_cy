@@ -14,7 +14,7 @@ describe('Plans should be alive and main requests should response 200', function
             url: '/settings/pricing/',
             headers: {
                 'accept': 'application/html+xml',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -29,7 +29,7 @@ describe('Plans should be alive and main requests should response 200', function
             url: '/settings/activity_log/list',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

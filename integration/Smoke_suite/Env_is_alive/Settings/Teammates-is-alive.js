@@ -14,7 +14,7 @@ describe('Teammates should be alive and main requests should response 200', func
             url: '/settings/teammates',
             headers: {
                 'accept': 'application/html+xml',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -29,7 +29,7 @@ describe('Teammates should be alive and main requests should response 200', func
             url: '/api/team/get-teammates',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

@@ -26,7 +26,7 @@ describe('Trending Searches Health-check.', () => {
                     url: 'api/' + country + '/trending-searches/?device=' + deviceType + '&timestamp=' + prevDaysDate,
                     headers: {
                         'accept': 'application/json',
-                        'Authorization': 'Token:' + auth.token,
+                        'Authorization': auth.token,
                     },
                     response: []
                 })

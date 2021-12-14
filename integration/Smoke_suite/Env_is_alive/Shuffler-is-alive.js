@@ -14,7 +14,7 @@ describe('Keyword Shuffler should be alive and main requests should response 200
             url: 'api/ru/1336519654/shuffle/free/',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             body: {
                 combine_index: [1, 2, 3, 4],

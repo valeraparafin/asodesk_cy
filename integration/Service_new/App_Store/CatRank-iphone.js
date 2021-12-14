@@ -41,7 +41,7 @@ describe('AppStore CatRank Health-check', () => {
                     url: 'api/category-ranking/chart?category=' + appCategoryID + '&category_list=free&country=' + country + '&device_type=' + deviceType.get('iphone') + '&storeids=' + storeID + '&timestamp_since=' + prevDaysDate,
                     headers: {
                         'accept': 'application/json',
-                        'Authorization': 'Token:' + auth.token,
+                        'Authorization': auth.token,
                     },
                     response: []
                 })

@@ -14,7 +14,7 @@ describe('Integrations should be alive and main requests should response 200', f
             url: '/settings/integrations',
             headers: {
                 'accept': 'application/html+xml',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -29,7 +29,7 @@ describe('Integrations should be alive and main requests should response 200', f
             url: '/api/app-store-connect-provider/',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -45,7 +45,7 @@ describe('Integrations should be alive and main requests should response 200', f
             url: '/api/google-play-provider/',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -61,7 +61,7 @@ describe('Integrations should be alive and main requests should response 200', f
             url: 'zendesk/api/internal/api_integration/settings/',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -77,7 +77,7 @@ describe('Integrations should be alive and main requests should response 200', f
             url: '/omnidesk/api/settings/',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

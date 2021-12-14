@@ -14,7 +14,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
             url: 'api/ru/811057180/keyword-analytics/suggestions',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -31,7 +31,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
             url: 'api/ru/811057180/keyword-analytics/suggestions/competitor-keywords/367003839',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -48,7 +48,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
             url: 'api/ru/811057180/keyword-analytics/suggestions/searchads',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -65,7 +65,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
             url: 'api/ru/811057180/keyword/231621/chart?limit=2678400s',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -82,7 +82,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
             url: 'api/ru/811057180/keyword/231621/top-apps',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -99,7 +99,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
             url: 'api/ru/811057180/keyword-analytics/data-stats',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -116,7 +116,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
     //         url: 'api/history/sap/export/?time_since=1620594000&time_till=1623358799&keyword_ids=12045148',
     //         headers: {
     //             'accept': 'application/json',
-    //             'Authorization': 'Token:' + auth.token,
+    //             'Authorization': auth.token,
     //         },
     //         response: []
     //     })

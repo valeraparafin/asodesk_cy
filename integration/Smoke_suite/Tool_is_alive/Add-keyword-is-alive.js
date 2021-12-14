@@ -17,7 +17,7 @@ describe('Search & Track/UnTrack Application should be alive and requests should
             url: 'api/tracked-apps?country=ru',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -34,7 +34,7 @@ describe('Search & Track/UnTrack Application should be alive and requests should
             url: '/api/ru/' + AppId + '/add-keywords',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             body: {
                 "keywords": ["инвестиции в плюс"],
@@ -57,7 +57,7 @@ describe('Search & Track/UnTrack Application should be alive and requests should
             url: '/api/ru/' + AppId + '/keyword-analytics/data-stats',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -75,7 +75,7 @@ describe('Search & Track/UnTrack Application should be alive and requests should
             url: '/api/ru/' + AppId + '/remove-keywords',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             body: {
                 "keyword_ids": [keywordId],

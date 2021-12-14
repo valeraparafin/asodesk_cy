@@ -14,7 +14,7 @@ describe('Referral program should be alive and main requests should response 200
             url: '/settings/referral-program',
             headers: {
                 'accept': 'application/html+xml',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -29,7 +29,7 @@ describe('Referral program should be alive and main requests should response 200
             url: '/api/referral-program/',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

@@ -14,7 +14,7 @@ describe('Keyword Density Counter should be alive and main requests should respo
             url: 'api/ru/1336519654/density-counter',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             body: {
                 content: "App Store Game of the Year in selected countries.\n 200+ MILLION USERS!\n\nDrive your bike through amazing tracks with jumps and loops \n in this simple and fast-paced physics-based game.\n\nMultiplayer! Challenge your Facebook\n  friends.\n\nTilt your device to lean your bike and touch the screen to accelerate/brake.\nApp Store Game of the Year in selected countries.\n 200+ MILLION USERS!\n\nDrive your bike through amazing tracks with jumps and loops \n in this simple and fast-paced physics-based game.\n\nMultiplayer! Challenge your Facebook\n  friends.\n\nTilt your device to lean your bike and touch the screen to accelerate/brake."

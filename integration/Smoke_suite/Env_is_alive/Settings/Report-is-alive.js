@@ -14,7 +14,7 @@ describe('Custom reports should be alive and main requests should response 200',
             url: '/reports-alerts',
             headers: {
                 'accept': 'application/html+xml',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })
@@ -29,7 +29,7 @@ describe('Custom reports should be alive and main requests should response 200',
             url: '/custom-reports/api/channel/list/',
             headers: {
                 'accept': 'application/json',
-                'Authorization': 'Token:' + auth.token,
+                'Authorization': auth.token,
             },
             response: []
         })

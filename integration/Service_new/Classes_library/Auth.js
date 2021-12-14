@@ -44,12 +44,7 @@ export class Auth {
         }
     };
 
-    signUp(Email, url) {
-        if (url != null) {
-            cy.visit(url);
-        } else {
-            cy.visit('/');
-        }
+    signUp(Email) {
         cy.get('a').contains('Sign Up').click();
         cy.get("[name=first_name]").type(this.constant.name)
         cy.get("[name=email]").type(Email).trigger('change');
@@ -81,7 +76,7 @@ export class Auth {
             url: 'https://hq.asodesk.com/api/auth/obtain', // baseUrl is prepended to url
             form: true, // indicates the body should be form urlencoded and sets Content-Type: application/x-www-form-urlencoded headers
             body: {
-                username: Email !== null ? Email : this.constant.login,
+                username: Email == null ? this.constant.login : Email,
                 password: this.constant.password,
             }
         })
