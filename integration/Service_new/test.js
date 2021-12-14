@@ -10,11 +10,11 @@ before('Sign in by admin', () => {
     auth.getToken()
     cy.wait(500)
 })
-/*
 it('Use hijack here', function () {
     cy.setCookie('Authorization', auth.token);
     cy.wait(500)
-    auth.hijack('tech@zorra.com')
+    // auth.hijack('tech@zorra.com')
+    auth.hijack()
     auth.getToken()
     cy.wait(500)
 
@@ -25,8 +25,8 @@ it('should ', function () {
     cy.wait(500)
     auth.hijack('tech@zorra.com')
     cy.wait(500)
-    getTrackedApps()
-}); */
+    // getTrackedApps()
+});
 /*
 function getTrackedApps() {
     cy.request({

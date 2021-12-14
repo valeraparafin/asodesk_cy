@@ -1,24 +1,3 @@
-// export function withTariff(Tariff) {
-//     const basic = 'testgetems+basic@gmail.com';
-//     const startup = 'testgetems+startup@gmail.com';
-//     const aso = 'testgetems+aso@gmail.com';
-//     const pro = 'testgetems+pro@gmail.com';
-//
-//     const Plans = {'Basic': basic, 'Startup': startup, 'ASO': aso, 'PRO': pro}
-//
-//     return Plans[Tariff]
-//
-//     // if (Tariff === 'Basic') {
-//     //     return Tariff
-//     // } else if (Tariff === 'Startup') {
-//     //     return startup
-//     // } else if (Tariff === 'ASO') {
-//     //     return aso
-//     // } else if (Tariff === 'PRO') {
-//     //     return pro
-//     // }
-// }
-
 export class Plan {
     basic = 'testgetems+basic@gmail.com';
 
@@ -46,7 +25,6 @@ export class Plan {
     business_4000_1000 = 'testgetems+business_4000_1000@gmail.com';
     business_6000_1000 = 'testgetems+business_6000_1000@gmail.com';
     business_reviews_2000 = 'testgetems+business_review_2000@gmail.com';
-
 
     Plans = {
 
@@ -86,7 +64,3 @@ export class Plan {
         return this.Plans[Tariff]
     }
 }
-
-
-
-
