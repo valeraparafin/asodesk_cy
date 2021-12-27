@@ -206,3 +206,52 @@ export class Tariffs {
         return this.Plans[Tariff]
     }
 }
+
+export class Features {
+    limited_aso_cr;
+    limited_table_aso_cr;
+    category_ranking_basic;
+    app_reviews
+    googleplayconsole
+
+
+    features = {
+        'Basic': {
+            limited_aso_cr: true,
+            limited_table_aso_cr: true,
+            kas_good_for_boosting: true,
+            googleplayconsole: true,
+            appstoreconnect: true,
+            app_reviews: true,
+            category_ranking_basic: true
+        },
+        'Startup_ASO_300': {
+            limited_aso_cr: true,
+            limited_table_aso_cr: true,
+            kas_good_for_boosting: true,
+            googleplayconsole: true,
+            appstoreconnect: true,
+            app_reviews: true,
+            category_ranking_basic: true,
+            aso_dashboard: true,
+            traffic_score: true,
+            optimizer_base: true,
+            category_ranking_extended: true,
+            simple_priority: true,
+            simple_export: true,
+            week_export: true,
+            keyword_manager_advanced: true,
+            km_competitor_keywords: true,
+            km_searchads_suggestions: true,
+            km_text_analyzer: true,
+            km_competitor_keywords_all_tabs: true,
+            keyword_density_counter: true,
+            keyword_shuffler: true,
+            review_analysis: true
+        },
+    }
+
+    withTariff(Tariff) {
+        return this.features[Tariff]
+    }
+}
