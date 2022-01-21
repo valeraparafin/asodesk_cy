@@ -24,8 +24,15 @@ Here are some commands
 
 ## Using this inside the parrent directory (folder)
 
+### Run Cypress
 
-### Run smoke suite tests
+```
+npm run cy
+```
+
+Use this to quick call cypress app instead `npx cypress open`
+
+### Run smoke suite tests 
 
 ```
 npm run smoke:chrome
@@ -34,8 +41,12 @@ npm run smoke:chrome
 This command includes test kit to check major api handles from tools, like: 
 
  - Auth
- - Track Appliaction
- - Keyword Analytics (Add keyword/Delete keyword)
+ - Appliaction
+    - Add app
+    - Delete app 
+ - Keyword Analytics 
+    - Add keyword
+    - Delete keyword
  - Keyword Explorer
  - Keyword Auto-Suggestions
  - ASO Dashboard
@@ -46,6 +57,15 @@ This command includes test kit to check major api handles from tools, like:
  - Optimizer
  - Keyword Density Counter
  - Keyword Shuffler
+ - Settings
+    - Activity log
+    - Plans
+    - Api plans
+    - Referal
+    - Custom report
+    - Teammates
+    - Integrations
+    - Billing history
  
  Scenarios by UI
  
