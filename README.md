@@ -62,7 +62,7 @@ This command includes test kit to check major api handles from tools, like:
 ($env:CYPRESS_BASE_URL = "https://<env>.asodesk.com")
 ```
 
-This command set environment in cy config file.
+This command set environment in cy config file (for the current session in terminal).
 
 > Note: Some env doesn't support features like `delete user`, so be ready to some tests can failed. (def. env is `hq`). In this case you should to delete user manually.
 
