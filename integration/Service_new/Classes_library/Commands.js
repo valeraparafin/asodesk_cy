@@ -20,25 +20,25 @@ export class Commands {
     }
 
     deleteUser() {
-        cy.get('.profileDropdown').click();
+        cy.get('.profileDropdown').click({force: true});
         cy.wait(500);
-        cy.get('.dropdown-menu > [href="/settings/profile"]').click();
+        cy.get('.dropdown-menu > [href="/settings/profile"]').click({force: true});
         cy.wait(500);
         cy.get('a').contains('Remove account').as('removeLink')
         cy.waitFor('@removeLink')
-        cy.get('@removeLink').click();
+        cy.get('@removeLink').click({force: true});
         cy.wait(500);
         cy.get('[name=remove_account]').as('removeModal').should('be.visible');
         cy.waitFor('@removeModal')
-        cy.get('@removeModal').click()
+        cy.get('@removeModal').click({force: true})
         cy.url().should('include', 'accounts/login/');
     }
 
     changePassword() {
-        cy.get('.profileDropdown').click();
-        cy.get('.dropdown-menu > [href="/settings/profile"]').click();
+        cy.get('.profileDropdown').click({force: true});
+        cy.get('.dropdown-menu > [href="/settings/profile"]').click({force: true});
         cy.wait(500);
-        cy.get('a').contains('Change password').click();
+        cy.get('a').contains('Change password').click({force: true});
         cy.get('input[name="oldpassword"]')
             .type(constant.password).should('have.value', constant.password);
         cy.get('input[name="password1"]')
