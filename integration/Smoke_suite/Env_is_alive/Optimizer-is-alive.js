@@ -10,6 +10,8 @@ const prevDaysDate = constant.s_prevDaysDate;
 const toDaysDate = constant.s_toDaysDate;
 const monthAgo = constant.s_monthAgo;
 
+const app = constant.applications.AS.snapchat
+
 describe('Optimizer should be alive and main requests should response 200', function () {
     it('Obtain token', function () {
         auth.obtain();
@@ -18,7 +20,7 @@ describe('Optimizer should be alive and main requests should response 200', func
         cy.request({
             method: 'POST',
             followRedirect: true, log: true, //turn off
-            url: '/api/ru/1336519654/optimizer/reports/summary/',
+            url: '/api/ru/' + app + '/optimizer/reports/summary/',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
@@ -27,9 +29,9 @@ describe('Optimizer should be alive and main requests should response 200', func
                 {
                     "items": [{
                         "lang": "ru",
-                        "title_keywords": ["Flirt", "me", ":", "знакомства", "рядом", "18+"],
-                        "subtitle_keywords": ["Онлайн", "флирт", "и", "быстрые", "встречи"],
-                        "desc_keywords": ["тиндер", "сайт", "секса", "секс", "анонимные", "интим", "маил", "ру", "баду", "друг", "вокруг", "измен", "бесплатно", "девушки", "чат", "чаты", "для"]
+                        "title_keywords": ["Snapchat"],
+                        "subtitle_keywords": ["Поделитесь", "моментом", "!"],
+                        "desc_keywords": ["snapchat", "facetime", "faceapp"]
                     }]
                 }
             ,
