@@ -59,11 +59,11 @@ export class Commands {
         cy.get('.buttonElement--primary').contains('Change Password').should('not.be.disabled').click();
         cy.get('span[data-notify="message"]').should('contain', 'Password successfully changed')
         cy.wait(1000);
-        cy.url().should('contain', 'asodesk.com/ru/')
+        cy.url().should('contain', 'asodesk.com/')
     }
 
     forgotPassword(email) {
-        cy.get('a').contains('Forgot Password?').click();
+        cy.get('a').contains('Forgot Password?', { matchCase: false}).click();
         cy.url().should('contain', 'accounts/password/reset');
         cy.get('.accountTitle').should('contain', 'Password Reset').and('be.visible');
         cy.get('input[name="email"]')
@@ -100,6 +100,15 @@ export class Commands {
         cy.get('#react-select-5-option-10').click();
 
         cy.get('.buttonElement--primary').should('not.be.disabled').click();
+    }
+
+    startOnboarding(isStart) {
+        if (isStart === false) {
+            cy.contains('I have no application').click();
+        }
+        else {
+            cy.contains('Add application').click();
+        }
     }
 
     checkSidebarStatus(status) {

@@ -50,6 +50,7 @@ export class Auth {
         cy.get("[name=first_name]").type(this.constant.name)
         cy.get("[name=email]").type(Email).trigger('change');
         // use the email address from mailslurp
+        // cy.get("[name=company]").type('test company') uncomment after release
         cy.get("[name=password1]").type(this.constant.password).trigger('change');
         // click the submit button
         cy.get('.buttonElement--primary').should('not.be.disabled').click();
