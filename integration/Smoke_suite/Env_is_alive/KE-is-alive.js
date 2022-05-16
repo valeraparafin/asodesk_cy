@@ -45,7 +45,7 @@ describe('Keyword Explorer should be alive and main requests should response 200
         cy.request({
             method: 'POST',
             followRedirect: true, log: true, //turn off
-            url: 'api/us/com.bpmobile.iscanner.free/keyword-explorer/related?device_type=googleplay&keyword=mcdonald',
+            url: 'api/us/com.bpmobile.iscanner.free/keyword-explorer/related?device_type=googleplay&keyword=mcdonalds',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,

@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "runHeadless": "cypress run --headless",
     "runHeaded": "cypress run --headed --browser chrome",
-    "smoke:chrome": "cypress run  -s 'integration/Smoke_suite/*/*.js,integration/Smoke_suite/*/*/*.js,integration/UI/Signup-by-mail-and-delete.js' --headless --browser chrome",
+    "smoke:chrome": "cypress run  -s 'integration/Smoke_suite/*/*.js,integration/Smoke_suite/*/*/*.js,integration/UI/Signup-by-mail-and-delete-new.js' --headless --browser chrome",
     "health:chrome": "cypress run  -s 'integration/Service_new/Google_Play/*.js,integration/Service_new/App_Store/*.js' --headless --browser chrome",
     "report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
     "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"

@@ -104,12 +104,30 @@ export class Commands {
 
     startOnboarding(isStart) {
         if (isStart === false) {
-            cy.contains('I have no application').click();
+            cy.contains('I don\'t have an app').click()
+            cy.wait(500);
         }
         else {
             cy.contains('Add application').click();
         }
     }
+
+    chooseTrialTariff() {
+        cy.wait(3000)
+        cy.get('.trialStep_width__2PajO > :nth-child(1)').click({force: true});
+        //TODO: 1. extension to moderate tariff
+        //TODO: 2. extension to choose different tariffs
+    }
+
+    chooseMeetUp() {
+        cy.contains('No, thanks').click().should('be.visible');
+        //TODO: extension to scheduled demo
+    }
+
+    thankYouPage() {
+        cy.contains('Ok, start working').click().should('be.visible');
+    }
+
 
     checkSidebarStatus(status) {
         if (status === false) {
