@@ -26,6 +26,7 @@ describe('CR should be alive and main requests should response 200', function ()
             response: []
         })
             .then((response) => {
+                console.log(response);
                 expect(response.status).eq(200);
                 expect(response.body.data).not.be.eq(0);
                 expect(response.body.data).not.be.eq(null);
@@ -45,6 +46,7 @@ describe('CR should be alive and main requests should response 200', function ()
             response: []
         })
             .then((response) => {
+                console.log(response);
                 expect(response.status).eq(200)
                 expect(response.body.data).not.be.empty;
             })

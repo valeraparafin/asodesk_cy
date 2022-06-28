@@ -1,7 +1,11 @@
 /// <reference types="cypress" />
-import {Auth} from "../../Service_new/Classes_library/Auth";
+import { Auth } from "../../Service_new/Classes_library/Auth";
+import { Constants } from "../../Service_new/Classes_library/Constants";
+
+const constant = new Constants();
 
 const auth = new Auth();
+const app = constant.applications.AS.onetwotrip
 
 describe('Keyword Analytics should be alive and main requests should response 200', function () {
     it('Obtain token', function () {
@@ -11,7 +15,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
         cy.request({
             method: 'POST',
             followRedirect: true, log: true, //turn off
-            url: 'api/ru/811057180/keyword-analytics/suggestions',
+            url: 'api/ru/' + app + '/keyword-analytics/suggestions',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
@@ -28,7 +32,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: 'api/ru/811057180/keyword-analytics/suggestions/competitor-keywords/367003839',
+            url: 'api/ru/' + app + '/keyword-analytics/suggestions/competitor-keywords/367003839',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
@@ -45,7 +49,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: 'api/ru/811057180/keyword-analytics/suggestions/searchads',
+            url: 'api/us/' + app + '/keyword-analytics/suggestions/sa/' + app + '',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
@@ -62,7 +66,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
         cy.request({
             method: 'POST',
             followRedirect: true, log: true, //turn off
-            url: 'api/ru/811057180/keyword/231621/chart?limit=2678400s',
+            url: 'api/ru/' + app + '/keyword/231621/chart?limit=2678400s',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
@@ -79,7 +83,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: 'api/ru/811057180/keyword/231621/top-apps',
+            url: 'api/ru/' + app + '/keyword/231621/top-apps',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
@@ -96,7 +100,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: 'api/ru/811057180/keyword-analytics/data-stats',
+            url: 'api/ru/' + app + '/keyword-analytics/data-stats',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,

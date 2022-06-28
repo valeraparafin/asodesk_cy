@@ -51,11 +51,13 @@ export class Auth {
         cy.get("[name=email]").type(Email).trigger('change');
         // use the email address from mailslurp
         cy.get("[name=company]").type('test company');
-		cy.get('.baseSelector__control').click();
+		cy.contains('div', 'country', {matchCase:false}).click();
 		cy.contains('Russia').click();
+        cy.contains('div', 'Job title', {matchCase: false}).click();
+        cy.contains('div', 'Other', {matchCase: false}).click();
         cy.get("[name=password1]").type(this.constant.password).trigger('change');
-        cy.get('[data-testid="checkbox-agreement"]').children('.tb-checkbox__body').click()
-        cy.get('[data-testid="checkbox-privacy"]').children('.tb-checkbox__body').click()
+        cy.get('[data-testid="checkbox-agreement"]').children('.tb-checkbox__body').click();
+        cy.get('[data-testid="checkbox-privacy"]').children('.tb-checkbox__body').click();
         // click the submit button
         cy.get('.buttonElement--primary').should('not.has.class', '.buttonElement--disabled').click();
     };
