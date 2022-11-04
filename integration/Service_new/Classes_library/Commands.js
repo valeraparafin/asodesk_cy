@@ -1,5 +1,5 @@
-import {Constants} from ".//Constants";
-import {Auth} from ".//Auth";
+import { Constants } from ".//Constants";
+import { Auth } from ".//Auth";
 
 
 const constant = new Constants();
@@ -12,33 +12,33 @@ export class Commands {
 
     setClearRank(status) {
         cy.get('.profileDropdown').click();
-        cy.get('.dropdown-menu > [href="/settings/profile"]').click({waitForAnimations: false});
+        cy.get('.dropdown-menu > [href="/settings/profile"]').click({ waitForAnimations: false });
         cy.wait(500);
-        status !== true ? cy.get('#id_is_clear_rank').uncheck({force: true}).should('not.be.checked') : cy.get('#id_is_clear_rank').check({force: true}).should('be.checked');
+        status !== true ? cy.get('#id_is_clear_rank').uncheck({ force: true }).should('not.be.checked') : cy.get('#id_is_clear_rank').check({ force: true }).should('be.checked');
         cy.wait(500);
         cy.get(':nth-child(7) > .col-xs-12 > .btn-success').click();
     }
 
     deleteUser() {
-        cy.get('.profileDropdown').click({force: true});
+        cy.get('.profileDropdown').click({ force: true });
         cy.wait(500);
-        cy.get('.dropdown-menu > [href="/settings/profile"]').click({force: true});
+        cy.get('.dropdown-menu > [href="/settings/profile"]').click({ force: true });
         cy.wait(500);
         cy.get('a').contains('Remove account').as('removeLink')
         cy.waitFor('@removeLink')
-        cy.get('@removeLink').click({force: true});
+        cy.get('@removeLink').click({ force: true });
         cy.wait(500);
         cy.get('[name=remove_account]').as('removeModal').should('be.visible');
         cy.waitFor('@removeModal')
-        cy.get('@removeModal').click({force: true})
+        cy.get('@removeModal').click({ force: true })
         cy.url().should('include', 'accounts/login/');
     }
 
     changePassword() {
-        cy.get('.profileDropdown').click({force: true});
-        cy.get('.dropdown-menu > [href="/settings/profile"]').click({force: true});
+        cy.get('.profileDropdown').click({ force: true });
+        cy.get('.dropdown-menu > [href="/settings/profile"]').click({ force: true });
         cy.wait(500);
-        cy.get('a').contains('Change password').click({force: true});
+        cy.get('a').contains('Change password').click({ force: true });
         cy.get('input[name="oldpassword"]')
             .type(constant.password).should('have.value', constant.password);
         cy.get('input[name="password1"]')
@@ -63,12 +63,12 @@ export class Commands {
     }
 
     forgotPassword(email) {
-        cy.get('a').contains('Forgot Password?', { matchCase: false}).click();
+        cy.get('a').contains('Forgot Password?', { matchCase: false }).click();
         cy.url().should('contain', 'accounts/password/reset');
-        cy.get('.accountTitle').should('contain', 'Password Reset').and('be.visible');
+        cy.contains('Password Reset').and('be.visible');
         cy.get('input[name="email"]')
             .type(email).should('have.value', email);
-        cy.get('.buttonElement--primary').contains('reset my password', {matchCase: false}).should('not.be.disabled').click();
+        cy.get('.buttonElement--primary').contains('reset my password', { matchCase: false }).should('not.be.disabled').click();
 
     }
 
@@ -104,7 +104,7 @@ export class Commands {
 
     startOnboarding(isStart) {
         if (isStart === false) {
-            cy.contains('I don\'t have an app').click()
+            cy.contains('I don\'t have an app or I will add it later', { matchCase: false }).click()
             cy.wait(500);
         }
         else {
@@ -114,7 +114,8 @@ export class Commands {
 
     chooseTrialTariff() {
         cy.wait(3000)
-        cy.get('.trialStep_width__2PajO > :nth-child(1)').click({force: true});
+        cy.get('#gm-get-trial-startupaso').click({ force: true }); // select aso plan
+
         //TODO: 1. extension to moderate tariff
         //TODO: 2. extension to choose different tariffs
     }
@@ -125,9 +126,12 @@ export class Commands {
     }
 
     thankYouPage() {
-        cy.contains('Ok, start working').click().should('be.visible');
+        cy.contains('Ok, start working', { matchCase: false }).click(); // successfully in modal skip
     }
 
+    aboutYourSelfModal() {
+        cy.get('#onbording-modal').contains('continue', { matchCase: false }).click(); // skip about yourself modal
+    }
 
     checkSidebarStatus(status) {
         if (status === false) {
@@ -176,10 +180,10 @@ export class Commands {
     }
 
     expandMenu(isExpand, name) {
-        isExpand === true ? cy.contains(name, {matchCase: false}).click({force: true}) : cy.log('it`s already expanded')
+        isExpand === true ? cy.contains(name, { matchCase: false }).click({ force: true }) : cy.log('it`s already expanded')
     }
 
     collapsMenu(isCollaps, name) {
-        isCollaps === false ? cy.contains(name, {matchCase: false}).click({force: true}) : cy.log('it`s already collapsed')
+        isCollaps === false ? cy.contains(name, { matchCase: false }).click({ force: true }) : cy.log('it`s already collapsed')
     }
 }

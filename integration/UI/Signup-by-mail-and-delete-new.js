@@ -40,50 +40,50 @@ describe("User case sign up, change password and delete account", function () {
             // generate url with confirmation code to activate account and get token from cookies to use it below
             .then(code => {
                 auth.getToken()
-                cy.get('[data-id="0"]').type("" + code, {delay:100})
-                console.log(code)
-                cy.contains('Incorrect code entered').should('not.exist')
-                command.startOnboarding(false);
+                cy.get('[data-id="0"]').type("" + code.slice(0, 4), { delay: 100 })
+                    .then(() => {
+                        cy.contains('Incorrect code entered').should('not.exist')
+                    })
             })
     });
 
-    // it('Skip onboarding', function () {
-    //     cy.setCookie('Authorization', auth.token);
-    //     // cy.visit('/')
-    //     command.chooseTrialTariff();
-    //     command.chooseMeetUp();
-    //     command.thankYouPage();
-    //     cy.wait(9000);
-    //
-    // });
+    it('03 - skip all onboarding steps', function () {
+        cy.setCookie('Authorization', auth.token);
+        cy.visit('/')
+        command.startOnboarding(false);
+        command.chooseTrialTariff();
+        command.aboutYourSelfModal();
+        command.thankYouPage();
+        cy.wait(1500);
+    });
 
 
-    // it('03 - can reset password by email', function () {
-    //     cy.visit('/');
-    //     command.forgotPassword(this.emailAddress)
-    //     cy.mailslurp()
-    //         // use inbox id and a timeout of 30 seconds, check unread mail only (set true)
-    //         .then(mailslurp => mailslurp.waitForLatestEmail(
-    //             this.inboxId, 30000, true))
-    //         // extract the confirmation code from the email body
-    //         .then(email => new RegExp('accounts/password/reset/key/.{30}').exec(email.body))
-    //         // generate url with confirmation code to activate account and get token from cookies to use it below
-    //         .then(code => {
-    //             cy.visit("/" + code);
-    //             cy.wait(1000);
-    //             command.changeForgottenPassword()
-    //         })
-    // });
+    it('04 - can reset password by email', function () {
+        cy.visit('/');
+        command.forgotPassword(this.emailAddress)
+        cy.mailslurp()
+            // use inbox id and a timeout of 30 seconds, check unread mail only (set true)
+            .then(mailslurp => mailslurp.waitForLatestEmail(
+                this.inboxId, 30000, true))
+            // extract the confirmation code from the email body
+            .then(email => new RegExp('accounts/password/reset/key/.{30}').exec(email.body))
+            // generate url with confirmation code to activate account and get token from cookies to use it below
+            .then(code => {
+                cy.visit("/" + code);
+                cy.wait(1000);
+                command.changeForgottenPassword()
+            })
+    });
 
-    // it('04 - can change password in profile', function () {
-    //     cy.setCookie('Authorization', auth.token);
-    //     cy.visit('/');
-    //     command.changePassword()
-    //     //delete inbox after all jobs with it have finished
-    //     // cy.mailslurp().then(mailslurp => mailslurp.deleteInbox(this.inboxId))
-    // });
+    it('05 - can change password in profile', function () {
+        cy.setCookie('Authorization', auth.token);
+        cy.visit('/');
+        command.changePassword()
+        //delete inbox after all jobs with it have finished
+        // cy.mailslurp().then(mailslurp => mailslurp.deleteInbox(this.inboxId))
+    });
 
-    it('05 - can delete user', function () {
+    it('06 - can delete user', function () {
         // set cookie to continue and delete the user
         cy.setCookie('Authorization', auth.token);
         cy.visit('/');
