@@ -13,7 +13,9 @@ export class Constants {
 
     // Dates
     prevDaysDate = dayjs().unix() - 200000; //- 10000;
+    prevDaysDate_topChart = dayjs().valueOf() -200000;
     toDaysDate = dayjs().unix() - 4780; //
+    toDaysDate_topChart = dayjs().valueOf() - 4780;
     monthAgo = dayjs().unix() - 2739405;
 
 

@@ -104,7 +104,7 @@ export class Commands {
 
     startOnboarding(isStart) {
         if (isStart === false) {
-            cy.contains('I don\'t have an app or I will add it later', { matchCase: false }).click()
+            cy.contains('I will add it later', { matchCase: false }).click()
             cy.wait(500);
         }
         else {
@@ -114,7 +114,7 @@ export class Commands {
 
     chooseTrialTariff() {
         cy.wait(3000)
-        cy.get('#gm-get-trial-startupaso').click({ force: true }); // select aso plan
+        cy.get('button[id*="pro"]').click({ force: true }); // select aso plan
 
         //TODO: 1. extension to moderate tariff
         //TODO: 2. extension to choose different tariffs

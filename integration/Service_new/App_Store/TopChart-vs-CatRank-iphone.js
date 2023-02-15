@@ -11,7 +11,7 @@ const deviceType = constant.AsDeviceTypePhone;
 const categoryAS = constant.AsAllCategoryIds;
 
 const prevDaysDate = constant.prevDaysDate;
-const toDaysDate = constant.toDaysDate;
+const toDaysDate = constant.toDaysDate_topChart;
 
 let storeID;
 let topChartPos;
@@ -32,7 +32,8 @@ describe('AppStore Top #1 from Top-Chart equals CatRank', () => {
                             followRedirect: true, log: true, //turn off
                             url: 'api/' + country + '/top-charts/?device_type=' + deviceType + '&length=20&list_type=free&start=0&store_id=' + categoryId + '&timestamp=' + toDaysDate,
                             headers: {
-                                'accept': 'application/json'
+                                'accept': 'application/json',
+                                'Authorization': auth.token
                             },
                             response: []
                         })
