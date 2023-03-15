@@ -16,10 +16,10 @@ on:
      
 
 jobs:
-  cypress-e2e-chrome87:
+  cypress-e2e-chrome107:
     name: E2E Run on Chrome
-    runs-on: ubuntu-18.04
-    container: cypress/browsers:node12.18.3-chrome87-ff82
+    runs-on: ubuntu-16.18.0
+    container: cypress/browsers:node16.18.0-chrome107-ff106-edge
     steps:
     - uses: actions/checkout@v2
     - name: Install a project with a clean slate
