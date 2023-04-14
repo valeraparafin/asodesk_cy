@@ -1,0 +1,8 @@
+FROM cypress/browsers:node18.12.0-chrome106-ff106
+WORKDIR ./
+COPY package.json package-lock.json ./
+COPY ./ .
+RUN npm ci && $(npm bin)/cypress cache path && $(npm bin)/cypress cache list && $(npm bin)/cypress verify
+CMD npm run health:chrome
+RUN npm run report:merge
+RUN npm run report:generate
