@@ -96,7 +96,7 @@ describe('Keyword Auto Suggestions should be alive and main requests should resp
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: 'api/ru/811057180/kas/expected-to-be-trending?only_positive_ts=0&without_user_keywords=0',
+            url: 'api/ru/429047995/kas/expected-to-be-trending?only_positive_ts=0&without_user_keywords=0',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
