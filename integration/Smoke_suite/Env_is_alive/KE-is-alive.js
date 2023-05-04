@@ -41,20 +41,22 @@ describe('Keyword Explorer should be alive and main requests should response 200
             })
     });
 
-    it('KE "related" should response 200 and not be empty ', function () {
-        cy.request({
-            method: 'POST',
-            followRedirect: true, log: true, //turn off
-            url: 'api/us/com.bpmobile.iscanner.free/keyword-explorer/related?device_type=googleplay&keyword=mcdonalds',
-            headers: {
-                'accept': 'application/json',
-                'Authorization': auth.token,
-            },
-            response: []
-        })
-            .then((response) => {
-                expect(response.status).eq(200)
-                expect(response.body.data).not.be.empty;
-            })
-    });
+    //В данном блоке теперь не будет отображаться информация, так как используется веб-выдача GP
+
+    // it('KE "related" should response 200 and not be empty ', function () {
+    //     cy.request({
+    //         method: 'POST',
+    //         followRedirect: true, log: true, //turn off
+    //         url: 'api/us/com.bpmobile.iscanner.free/keyword-explorer/related?device_type=googleplay&keyword=mcdonalds',
+    //         headers: {
+    //             'accept': 'application/json',
+    //             'Authorization': auth.token,
+    //         },
+    //         response: []
+    //     })
+    //         .then((response) => {
+    //             expect(response.status).eq(200)
+    //             expect(response.body.data).not.be.empty;
+    //         })
+    // });
 });

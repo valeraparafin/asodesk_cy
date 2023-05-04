@@ -64,7 +64,7 @@ describe('Keyword Analytics should be alive and main requests should response 20
 
     it('KA|Chart "chart" should response 200 and not be empty ', function () {
         cy.request({
-            method: 'POST',
+            method: 'GET',
             followRedirect: true, log: true, //turn off
             url: 'api/ru/' + app + '/keyword/231621/chart?limit=2678400s',
             headers: {
