@@ -16,7 +16,6 @@ describe("User case sign up, change password and delete account", function () {
             .then(inbox => {
                 // save inbox id and email address to this (make sure you use function and not arrow syntax)
                 cy.wrap(inbox.id).as('inboxId')
-
                 cy.wrap(inbox.emailAddress).as('emailAddress')
             })
     });
@@ -26,11 +25,13 @@ describe("User case sign up, change password and delete account", function () {
         chai.expect(this.emailAddress).to.contain("@mailslurp");
         // visit the application with generated email
         auth.signUp(this.emailAddress);
-        // auth.signIn(this.emailAddress);
     });
 
     it('02 - can receive confirmation code and activate account', function () {
         // app will send user an email containing a code, use mailslurp to wait for the latest email
+        
+        auth.signIn(this.emailAddress);
+        cy.wait(3000);
         cy.mailslurp()
             // use inbox id and a timeout of 30 seconds, check unread mail only (set true)
             .then(mailslurp => mailslurp.waitForLatestEmail(
@@ -39,21 +40,22 @@ describe("User case sign up, change password and delete account", function () {
             .then(email => new RegExp('\\d{4}</h4>').exec(email.body))
             // generate url with confirmation code to activate account and get token from cookies to use it below
             .then(code => {
-                auth.getToken()
                 cy.get('[data-id="0"]').type("" + code.slice(0, 4), { delay: 100 })
                     .then(() => {
                         cy.contains('Incorrect code entered').should('not.exist')
                     })
             })
+        auth.getToken()
     });
 
     it('03 - skip all onboarding steps', function () {
         cy.setCookie('Authorization', auth.token);
         cy.visit('/')
+        command.aboutYourSelfModal();
+        command.chooseGoal();
         command.startOnboarding(false);
         command.chooseTrialTariff();
-        command.aboutYourSelfModal();
-        command.thankYouPage();
+        command.closeGreetingModal();
         cy.wait(1500);
     });
 
