@@ -29,7 +29,6 @@ describe("User case sign up, change password and delete account", function () {
 
     it('02 - can receive confirmation code and activate account', function () {
         // app will send user an email containing a code, use mailslurp to wait for the latest email
-        
         auth.signIn(this.emailAddress);
         cy.wait(3000);
         cy.mailslurp()
