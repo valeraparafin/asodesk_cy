@@ -42,7 +42,7 @@ export class Constants {
 
     // section for smoke tests
     applications = {
-        GP: {'spotify':'com.spotify.music','scanner': 'com.bpmobile.iscanner.free', 'snapchat':'com.snapchat.android'},
+        GP: {'spotify':'com.spotify.music','scanner': 'com.bpmobile.iscanner.free', 'snapchat':'com.snapchat.android', 'pinterest':'com.pinterest'},
         AS: {'spotify':'324684580','tiktok': '835599320', 'snapchat':'447188370', 'flirtme':'1336519654', 'onetwotrip': '811057180'}
     }
 }
