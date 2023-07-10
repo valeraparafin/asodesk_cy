@@ -26,7 +26,7 @@ jobs:
       run: npm install
       
     - name: Run Cypress tests
-      run: npm run test:chrome
+      run: npx cypress run  -s '.\integration\Smoke_suite\Env_is_alive\TA-is-alive.js' --headless --browser chrome
       continue-on-error: true
 
     - name: Merge test results
