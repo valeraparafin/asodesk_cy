@@ -6,28 +6,34 @@ const constant = new Constants();
 
 const auth = new Auth();
 
+const prevDaysDate = constant.s_prevDaysDate;
+const toDaysDate = constant.s_toDaysDate;
+const monthAgo = constant.s_monthAgo;
+
+const app = constant.applications.GP.pinterest
+
 describe('Tag Analysis should be alive and main requests should response 200', function () {
     it('Obtain token', function () {
         auth.obtain();
     })
-    it('Versions" should response 200 and not be empty ', function () {
+    it('Versions should response 200 and not be empty ', function () {
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: 'api/com.pinterest/versions',
+            url: '/api/' + app + '/versions/',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
             },
-            response: []
+            response: [],
         })
             .then((response) => {
-                expect(response.status).eq(200)
-                expect(response.body.data).not.be.eq(0);
+                expect(response.status).eq(200);
+                expect(response.body).not.be.eq(0).and.not.be.undefined;
             })
     });
 
-    it('tag-analysis-statistics" should response 200 and not be empty ', function () {
+    it('tag-analysis-statistics should response 200 and not be empty ', function () {
         cy.request({
             method: 'POST',
             followRedirect: true, log: true, //turn off
@@ -37,18 +43,18 @@ describe('Tag Analysis should be alive and main requests should response 200', f
                 'Authorization': auth.token,
             },
             body: {
-                countries: ["ES"],
-                languages: ["es"],
-                storeid: "com.pinterest",
-                time_since: 1685912400,
-                time_till: 1688590799,
-                versions: []
+                countries: [constant.GpFavCountryIds[4].toUpperCase()],
+                languages: [constant.GpFavCountryIds[4]],
+                storeid: app,
+                time_since: constant.monthAgo,
+                time_till: constant.toDaysDate,
+                versions: [],
             },
-            response: []
+            response: [],
         })
             .then((response) => {
-                expect(response.status).eq(200)
-                expect(response.body.data).not.be.eq(0);
+                expect(response.status).eq(200);
+                expect(response.body).not.be.eq(0).and.not.be.undefined;
             })
     });
 
@@ -62,18 +68,18 @@ describe('Tag Analysis should be alive and main requests should response 200', f
                 'Authorization': auth.token,
             },
             body: {
-                countries: ["ES"],
-                languages: ["es"],
-                storeid: "com.pinterest",
-                time_since: 1685912400,
-                time_till: 1688590799,
-                versions: []
+                countries: [constant.GpFavCountryIds[4].toUpperCase()],
+                languages: [constant.GpFavCountryIds[4]],
+                storeid: app,
+                time_since: constant.monthAgo,
+                time_till: constant.toDaysDate,
+                versions: [],
             },
-            response: []
+            response: [],
         })
             .then((response) => {
-                expect(response.status).eq(200)
-                expect(response.body.data).not.be.eq(0);
+                expect(response.status).eq(200);
+                expect(response.body).not.be.eq(0).and.not.be.undefined;
             })
     });
 
