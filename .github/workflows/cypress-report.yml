@@ -1,41 +1,40 @@
-name: Create Cypress report
-#on:
-  #  push
-  #  branches:
-  #    - 'master'
-  # Add this part if you want to schedule test rerun
-  #schedule:
-     #- cron: '0 8 * * *' #every day at 8pm - minute hour day mounth year.
+name: Cypress Tests CI
 on:
   push:
     branches:
      - 'main'
   schedule:
-    - cron: '0 5 1-31 * *'     
+    - cron: '0 0 * * *'     
      
      
 
 jobs:
-  cypress-e2e-chrome107:
-    name: E2E Run on Chrome
+  run-tests-v1:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node18.12.0-chrome106-ff106
+#    container: cypress/browsers:node18.12.0-chrome106-ff106
+    
     steps:
-    - uses: actions/checkout@v2
-    - name: Install a project with a clean slate
-      run: |
-        npm install
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+          node-version: 18
+    
+    - name: Install dependencies
+      run: npm install
+      
     - name: Run Cypress tests
-      run: npm run health:chrome
+      run: npm run test:chrome
       continue-on-error: true
-#    - name: Copy test execution videos
-#      run: |
-#        mkdir public
-#        cp -r cypress/videos public/videos
-    - name: Merge test results into one
+
+    - name: Merge test results
       run: npm run report:merge
+      
     - name: Generate HTML report
       run: npm run report:generate
+      
     - name: Deploy report page
       uses: peaceiris/actions-gh-pages@v3
       with:
@@ -43,3 +42,4 @@ jobs:
         publish_dir: ./public
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
+        
