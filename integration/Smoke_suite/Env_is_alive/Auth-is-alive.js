@@ -57,4 +57,21 @@ describe('Auth should be alive and main requests should response 200', function 
             })
     });
 
+    it('get-app-locales should response 200 and not be empty ', function () {
+        cy.request({
+            method: 'get',
+            followRedirect: true, log: true, //turn off
+            url: '/api/ru/get-app-locales/?page=1',
+            headers: {
+                'accept': 'application/json',
+                'Authorization': auth.token,
+            },
+            response: []
+        })
+            .then((response) => {
+                expect(response.status).eq(200)
+                expect(response.body).not.be.eq(0).and.not.be.undefined;
+            })
+    });
+
 });
