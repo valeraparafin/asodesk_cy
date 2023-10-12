@@ -1,5 +1,8 @@
 /// <reference types="cypress" />
 import {Auth} from "../../Service_new/Classes_library/Auth";
+import { Constants } from "../../Service_new/Classes_library/Constants";
+
+const constant = new Constants();
 
 const auth = new Auth();
 
@@ -44,7 +47,7 @@ describe('Auth should be alive and main requests should response 200', function 
         cy.request({
             method: 'get',
             followRedirect: true, log: true, //turn off
-            url: 'api/tracked-apps?country=ru',
+            url: 'api/tracked-apps?country=' + constant.GpFavCountryIds[4],
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
