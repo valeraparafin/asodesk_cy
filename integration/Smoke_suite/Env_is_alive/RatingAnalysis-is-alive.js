@@ -28,6 +28,7 @@ describe('Rating Analysis Board should be alive and main requests should respons
             body: {
                 start_date: constant.monthAgo,
                 end_date: constant.toDaysDate,
+                countries: [constant.GpFavCountryIds[4].toUpperCase()],
             },
             response: [],
         })
