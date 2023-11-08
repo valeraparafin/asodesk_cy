@@ -11,8 +11,8 @@ export class Commands {
     sidebarInfo = null;
 
     setClearRank(status) {
-        cy.get('.profileDropdown').click();
-        cy.get('.dropdown-menu > [href="/settings/profile"]').click({ waitForAnimations: false });
+        cy.get('div[class="profileDropdown flex dropdown dropend"]').click();
+        cy.get('.dropdown-menu > [href="/account/"]').click({ waitForAnimations: false });
         cy.wait(500);
         status !== true ? cy.get('#id_is_clear_rank').uncheck({ force: true }).should('not.be.checked') : cy.get('#id_is_clear_rank').check({ force: true }).should('be.checked');
         cy.wait(500);
@@ -20,9 +20,9 @@ export class Commands {
     }
 
     deleteUser() {
-        cy.get('.profileDropdown').click({ force: true });
+        cy.get('div[class="profileDropdown flex dropdown dropend"]').click({ force: true });
         cy.wait(500);
-        cy.get('.dropdown-menu > [href="/settings/profile"]').click({ force: true });
+        cy.get('.dropdown-menu > [href="/account/"]').click({ force: true });
         cy.wait(500);
         cy.get('a').contains('Remove account').as('removeLink')
         cy.waitFor('@removeLink')
@@ -35,8 +35,8 @@ export class Commands {
     }
 
     changePassword() {
-        cy.get('.profileDropdown').click({ force: true });
-        cy.get('.dropdown-menu > [href="/settings/profile"]').click({ force: true });
+        cy.get('div[class="profileDropdown flex dropdown dropend"]').click({ force: true });
+        cy.get('.dropdown-menu > [href="/account/"]').click({ force: true });
         cy.wait(500);
         cy.get('a').contains('Change password').click({ force: true });
         cy.get('input[name="oldpassword"]')

@@ -11,7 +11,7 @@ describe('Activity Log should be alive and main requests should response 200', f
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/settings/activity_log/',
+            url: '/account/log',
             headers: {
                 'accept': 'application/html+xml',
                 'Authorization': auth.token,

@@ -11,7 +11,7 @@ describe('Billing history should be alive and main requests should response 200'
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/settings/billing/',
+            url: '/account/billing',
             headers: {
                 'accept': 'application/html+xml',
                 'Authorization': auth.token,

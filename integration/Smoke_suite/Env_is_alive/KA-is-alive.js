@@ -13,9 +13,9 @@ describe('Keyword Analytics should be alive and main requests should response 20
     })
     it('KA|KM "suggestions" should response 200 and not be empty ', function () {
         cy.request({
-            method: 'POST',
+            method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: 'api/ru/' + app + '/keyword-analytics/suggestions',
+            url: 'api/us/' + app + '/keyword-analytics/suggestions',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
