@@ -11,7 +11,7 @@ export class Auth {
         if (url != null) {
             cy.visit(url);
         } else {
-            cy.visit('/');
+            cy.visit('/accounts/login/');
         }
 
         if (Email != null) {
@@ -45,7 +45,7 @@ export class Auth {
     };
 
     signUp(Email) {
-        cy.visit('/');
+        cy.visit('/accounts/login/');
         cy.get('a').contains('Sign Up').click();
         cy.get("[name=first_name]").type(this.constant.name)
         cy.get("[name=email]").type(Email).trigger('change');

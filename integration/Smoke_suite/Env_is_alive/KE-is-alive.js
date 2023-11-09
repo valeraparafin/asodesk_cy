@@ -9,9 +9,9 @@ describe('Keyword Explorer should be alive and main requests should response 200
     })
     it('KE "search" should response 200 and not be empty ', function () {
         cy.request({
-            method: 'POST',
+            method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: 'api/ru/1336519654/keyword-explorer/search?device_type=iphone&keyword=tinder',
+            url: 'api/keyword-explorer/search?country=US&device=iphone&keyword=tinder&length=20&start=0&remember=true&storeid=351331194',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
@@ -26,9 +26,9 @@ describe('Keyword Explorer should be alive and main requests should response 200
 
     it('KE "suggestions" should response 200 and not be empty ', function () {
         cy.request({
-            method: 'POST',
+            method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: 'api/ru/1336519654/keyword-explorer/suggestions?device_type=iphone&keyword=tinder',
+            url: 'api/us/351331194/keyword-explorer/suggestions?device_type=iphone&keyword=tinder',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,

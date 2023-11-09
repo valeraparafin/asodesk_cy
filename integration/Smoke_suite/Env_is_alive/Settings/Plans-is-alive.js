@@ -11,9 +11,9 @@ describe('Plans should be alive and main requests should response 200', function
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/settings/pricing/',
+            url: '/account/pricing',
             headers: {
-                'accept': 'application/html+xml',
+                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
                 'Authorization': auth.token,
             },
             response: []
@@ -26,7 +26,7 @@ describe('Plans should be alive and main requests should response 200', function
         cy.request({
             method: 'GET',
             followRedirect: true, log: true, //turn off
-            url: '/settings/activity_log/list',
+            url: '/api/settings/plans/',
             headers: {
                 'accept': 'application/json',
                 'Authorization': auth.token,
@@ -36,7 +36,7 @@ describe('Plans should be alive and main requests should response 200', function
             .then((response) => {
 
                 expect(response.status).eq(200)
-                expect(response.body.data).not.be.empty;
+                expect(response.body).not.be.empty;
             })
     });
 });

@@ -11,8 +11,8 @@ describe('HS availability through Plans', () => {
         auth.signIn();
 
         //Open Plans page
-        cy.get('div[data-testid="dropdown-toggle"]').click();
-        cy.contains('Plans').click();
+        cy.get('span[data-testid="icon-icon-more-3-dots"]').click();
+        cy.contains('View All Plans').click();
         cy.contains('Services').click();
         cy.contains('Get plan').eq(0).click();
 
