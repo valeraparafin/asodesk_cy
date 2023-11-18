@@ -7,6 +7,12 @@ module.exports = defineConfig({
   viewportWidth: 1366,
   viewportHeight: 760,
   numTestsKeptInMemory: 0,
+  blockHosts: [
+    '*.yandex.ru*',
+    '*.ads.linkedin.com*',
+    '*.g.doubleclick.net',
+    '*.clarity.*',
+  ],
   video: false,
   retries: 1,
   projectId: 'idjn2s',
