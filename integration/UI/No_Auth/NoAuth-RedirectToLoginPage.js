@@ -1,38 +1,22 @@
 /// <reference types="cypress" />
-import { Runnable } from "mocha";
 import { Constants } from "../../Service_new/Classes_library/Constants";
 
 const constant = new Constants();
 
-
+beforeEach("Ignore 401", () => {
+    // Ignore errors for unauthorized user (401)
+    cy.on("uncaught:exception", (err) => {
+      if (err.message.includes("401")) {
+        return false;
+      }
+    });
+});
 
 describe('Tools should redirect to login page without Authorization', function () {
     
     it('Categories Ranking should redirect to login page', function () {
 
-        // Ignore errors for unauthorized user (401) 
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        //Sign in
-        cy.visit('http://hq.asodesk.com');
-
-        // cy.request({
-        //     url: 'http://feature-update-permissions.asodesk.staging.asodesk.com/api/tracked-apps?country=us',
-        //     failOnStatusCode: false, // Игнорировать ошибку 401       
-        // });          
-
-        // cy.request({
-        //     url: 'http://feature-update-permissions.asodesk.staging.asodesk.com/api/frontend-settings/ui-config/',
-        //     failOnStatusCode: false, // Игнорировать ошибку 401  
-        // });  
-
-        // cy.request({
-        //     url: 'http://feature-update-permissions.asodesk.staging.asodesk.com/api/request-info',
-        //     failOnStatusCode: false, // Игнорировать ошибку 401
-        // });
-
+        cy.visit('/');
 
         //Open ASO Tools
         cy.contains('ASO Tools').click();
@@ -45,13 +29,7 @@ describe('Tools should redirect to login page without Authorization', function (
 
     it('Charts should redirect to login page', function () {
 
-        // Ignore errors for unauthorized user (401) 
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        //Sign in
-        cy.visit('http://hq.asodesk.com');
+        cy.visit('/');
 
         //Open ASO Tools
         cy.contains('ASO Tools').click();
@@ -64,13 +42,7 @@ describe('Tools should redirect to login page without Authorization', function (
 
     it('Competitors positions should redirect to login page', function () {
 
-        // Ignore errors for unauthorized user (401) 
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        //Sign in
-        cy.visit('http://hq.asodesk.com');
+        cy.visit('/');
 
         //Open ASO Tools
         cy.contains('ASO Tools').click();
@@ -83,13 +55,7 @@ describe('Tools should redirect to login page without Authorization', function (
 
     it('Auto-Suggestions should redirect to login page', function () {
 
-        // Ignore errors for unauthorized user (401) 
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        //Sign in
-        cy.visit('http://hq.asodesk.com');
+        cy.visit('/');
 
         //Open ASO Tools
         cy.contains('ASO Tools').click();
@@ -102,13 +68,7 @@ describe('Tools should redirect to login page without Authorization', function (
 
     it('Text Metadata Builder should redirect to login page', function () {
 
-        // Ignore errors for unauthorized user (401) 
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        //Sign in
-        cy.visit('http://hq.asodesk.com');
+        cy.visit('/');
 
         //Open ASO Tools
         cy.contains('ASO Tools').click();
@@ -121,13 +81,7 @@ describe('Tools should redirect to login page without Authorization', function (
     
     it('Featured Reviews should redirect to login page', function () {
 
-        // Ignore errors for unauthorized user (401) 
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        //Sign in
-        cy.visit('http://hq.asodesk.com');
+        cy.visit('/');
 
         //Open Reviews & Ratings
         cy.contains('Reviews & Ratings').click();
@@ -140,13 +94,7 @@ describe('Tools should redirect to login page without Authorization', function (
 
     it('Reviews Analysis should redirect to login page', function () {
 
-        // Ignore errors for unauthorized user (401) 
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        //Sign in
-        cy.visit('http://hq.asodesk.com');
+        cy.visit('/');
 
         //Open Reviews & Ratings
         cy.contains('Reviews & Ratings').click();
@@ -159,13 +107,7 @@ describe('Tools should redirect to login page without Authorization', function (
     
     it('Rating Analysis should redirect to login page', function () {
 
-        // Ignore errors for unauthorized user (401) 
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        //Sign in
-        cy.visit('http://hq.asodesk.com');
+        cy.visit('/');
 
         //Open Reviews & Ratings
         cy.contains('Reviews & Ratings').click();
@@ -178,13 +120,7 @@ describe('Tools should redirect to login page without Authorization', function (
 
     it('API should redirect to login page', function () {
 
-        // Ignore errors for unauthorized user (401) 
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        //Sign in
-        cy.visit('http://hq.asodesk.com');
+        cy.visit('/');
 
         //Open Connections Hub
         cy.contains('Connections Hub').click();
@@ -196,13 +132,7 @@ describe('Tools should redirect to login page without Authorization', function (
 
     it('Keyword Boost should redirect to login page', function () {
 
-        // Ignore errors for unauthorized user (401) 
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        //Sign in
-        cy.visit('http://hq.asodesk.com');
+        cy.visit('/');
 
         //Open Keyword Boost
         cy.contains('Keyword Boost').click();
@@ -213,13 +143,7 @@ describe('Tools should redirect to login page without Authorization', function (
 
     it('Refer a Friend should redirect to login page', function () {
 
-        // Ignore errors for unauthorized user (401) 
-        cy.on('uncaught:exception', (err, runnable) => {
-            return false;
-        });
-
-        //Sign in
-        cy.visit('http://hq.asodesk.com');
+        cy.visit('/');
 
         //Open Refer a Friend
         cy.contains('Refer a Friend').click();
