@@ -3,9 +3,6 @@ import { Constants } from "../../Service_new/Classes_library/Constants";
 
 const constant = new Constants();
 
-const toDaysDate = constant.toDaysDate;
-const monthAgo = constant.monthAgo;
-
 beforeEach("Ignore 401", () => {
     // Ignore errors for unauthorized user (401)
     cy.on("uncaught:exception", (err) => {
