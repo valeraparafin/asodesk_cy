@@ -30,7 +30,7 @@
     "ansi-regex": "^5.0.1",
     "caniuse-lite": "^1.0.30001540",
     "ci": "^1.0.0",
-    "cypress": "^12.17.4",
+    "cypress": "^13.6.0",
     "cypress-mailslurp": "^1.7.0",
     "dayjs": "^1.11.10",
     "glob-parent": "^6.0.2",
