@@ -1,0 +1,48 @@
+name: Cypress smoke tests report
+on:
+ # push:
+ #   branches:
+ #    - 'main'
+ # pull_request:
+ #   branches:
+ #    - 'main'
+  schedule:
+    - cron: '0 12 * * 1'    
+     
+     
+
+jobs:
+  cypress-e2e-chrome:
+    runs-on: ubuntu-latest
+#    container: cypress/browsers:node18.12.0-chrome106-ff106
+    
+    steps:
+    - name: Checkout repository ☑️
+      uses: actions/checkout@v3
+    
+    - name: Install Node.js 📥
+      uses: actions/setup-node@v3
+      with:
+          node-version: 18
+    
+    - name: Install dependencies 📦
+      run: npm install
+      
+    - name: Run Cypress tests 🧪
+      run: npm run smoke:chrome
+      continue-on-error: true
+
+    - name: Merge test results ♻️
+      run: npm run report:merge
+      
+    - name: Generate HTML report 🍽️
+      run: npm run report:generate
+      
+    - name: Deploy report page 🥂
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
+        publish_dir: ./public
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        
