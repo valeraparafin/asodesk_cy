@@ -28,7 +28,7 @@ describe('Keyword Phrase Mixer should have full access without Authorization', f
     it('Demo Banner should be visible', function () {
         cy.visit('/');
         cy.contains('ASO Tools').click();
-        cy.get('div[class="relative cursor-default"]:contains("Keywords")').click();
+        cy.get('div[class="relative cursor-default js-local-navigation-and-tools-step-tour"]:contains("Keywords")').click();
         cy.contains('Phrase Mixer').click();
         
         cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
@@ -42,7 +42,7 @@ describe('Live Positions should have full access without Authorization', functio
     it('Demo banner should be visible', function () {
         cy.visit('/');
         cy.contains('ASO Tools').click();
-        cy.get('div[class="relative cursor-default"]:contains("Keywords")').click();
+        cy.get('div[class="relative cursor-default js-local-navigation-and-tools-step-tour"]:contains("Keywords")').click();
         cy.contains('Live Positions').click();
         
         cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
