@@ -5,8 +5,8 @@ const dayjs = require('dayjs');
 export class Constants {
 
     // Credentials
-    login = 'iparafin@yandex.ru';
-    password = 'A123321b';
+    login = 'igor_i+autotest@asodesk.com';
+    password = '123123asodesk';
 
     // Test data
     name = 'test-name' // use it every time when input should have name

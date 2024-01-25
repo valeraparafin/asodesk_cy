@@ -24,7 +24,7 @@ describe('Search & Track/UnTrack Application should be alive and requests should
             .then((response) => {
                 expect(response.status).eq(200);
                 expect(response.body).not.be.empty;
-                AppId = response.body[0].store_id;
+                AppId = response.body.results[0].store_id;
             })
     });
     it('Add keywords should response 200 and contain success: added', function () {
