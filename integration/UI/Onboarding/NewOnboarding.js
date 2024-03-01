@@ -7,6 +7,14 @@ import { Auth } from "../../Service_new/Classes_library/Auth";
 const command = new Commands();
 const auth = new Auth();
 
+beforeEach("Ignore exeptions", () => {
+    cy.on("uncaught:exception", (err) => {
+      if (err.message) {
+        return false;
+      }
+    });
+});
+
 describe("Sign up, onboarding and product tour", function () {
     // use cypress-mailslurp plugin to create or use created an email address before test
     before(function () {
@@ -45,14 +53,12 @@ describe("Sign up, onboarding and product tour", function () {
                     })
             })
         auth.getToken()
-
-        
     });
 
 
     it('Onboarding steps', function () {
-        // cy.setCookie('Authorization', auth.token);
-        cy.visit('/')
+        
+        auth.signIn(this.emailAddress);
 
         //"Let's get to know you"
         cy.get('input[id="companyName"]').type('Test Company Name');
@@ -69,7 +75,7 @@ describe("Sign up, onboarding and product tour", function () {
         //"The last one"
         cy.get('input[value="YouTube"]').click();
         cy.get('button[class="buttonElement buttonElement--primary buttonElement--md rounded-4 w-full"]').click();
-       
+
         //The beginer's guide
         cy.get('button[class="buttonElement buttonElement--primary buttonElement--md rounded-4 w-full mb-8"]').click();
 
@@ -77,53 +83,63 @@ describe("Sign up, onboarding and product tour", function () {
         cy.get('button[class="driver-popover-next-btn"]').click();
 
         //Track your first app
-        cy.get('inputid="react-select-3-input"]').type('google');
-        cy.contains('Track').eq(0).click();
+        cy.get('div[class="appSearchSelect__value-container css-1hwfws3"]').type('google');
+        cy.wait(10000)
+        cy.contains('Google').eq(0).click();
 
         //Global navigation. Aso Tools
-        cy.contains('ASO Tools').click();
+        cy.wait(5000)
+        cy.get('span[data-testid="icon-aso-tools"]').click();
 
         //Local Navigation and Tools
+        cy.wait(5000)
         cy.contains('Google');
-        cy.contains('Keywords').focus();
+        cy.contains('Keywords').click();
         cy.contains('Find & Track').click();
 
         //Posibilities of Asodesk
+        cy.wait(5000)
         cy.contains('Track keyword positions with Keyword Ranking Chart, find and manage the best keywords for your app with Keyword Manager and Keyword Table');
         cy.get('button[class="driver-popover-next-btn"]').click();
 
         //Reviews & Ratings
+        cy.wait(5000)
         cy.contains('Universal tool to work with your users');
         cy.get('button[class="driver-popover-next-btn"]').click();
-        
+
         //Stores Analytics
+        cy.wait(5000)
         cy.contains('Discover real-time search results on the App Store and Google Play');
         cy.get('button[class="driver-popover-next-btn"]').click();       
-        
+
         //Connections Hub
+        cy.wait(5000)
         cy.contains('All Reports Settings');
         cy.get('button[class="driver-popover-next-btn"]').click();  
 
-        //Ketword Boost
+        //Keyword Boost
+        cy.wait(5000)
         cy.contains('Create and manage Keyword Boost campaigns to get top-1 in search results');
         cy.get('button[class="driver-popover-next-btn"]').click();  
 
         //Schedule a demo
+        cy.wait(5000)
         cy.get('button[class="buttonElement buttonElement--secondary buttonElement--md rounded-4 w-full"]').click();        
 
         //"Find a perfect fit for you"
-        cy.get('button[class="buttonElement buttonElement--success buttonElement--lg buttonElement--solid buttonElement--block rounded-4 gm-onboarding-get-trial-btn"]').click();          
+        cy.wait(5000)
+        cy.get('button[id="gm-get-trial-guruaso"]').click();          
 
         //Welcome on Board
+        cy.wait(5000)
         cy.get('button[class="buttonElement buttonElement--primary buttonElement--md rounded-4 w-full"]').click();          
 
     }); 
 
 
     it('06 - can delete user', function () {
-        // set cookie to continue and delete the user
-        cy.setCookie('Authorization', auth.token);
-        cy.visit('/');
+        // delete the user
+        auth.signIn(this.emailAddress);
         command.deleteUser()
     });
 

@@ -20,7 +20,7 @@ export class Commands {
     }
 
     deleteUser() {
-        cy.get('div[class="profileDropdown flex dropdown dropend"]').click({ force: true });
+        cy.get('div[class="profileDropdown flex dropdown dropend"]').click();
         cy.wait(500);
         cy.get('.dropdown-menu > [href="/account/"]').click({ force: true });
         cy.wait(500);
@@ -35,7 +35,7 @@ export class Commands {
     }
 
     changePassword() {
-        cy.get('div[class="profileDropdown flex dropdown dropend"]').click({ force: true });
+        cy.get('div[class="profileDropdown flex dropdown dropend"]').click();
         cy.get('.dropdown-menu > [href="/account/"]').click({ force: true });
         cy.wait(500);
         cy.get('a').contains('Change password').click({ force: true });
