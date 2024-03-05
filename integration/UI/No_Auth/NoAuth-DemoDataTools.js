@@ -87,7 +87,7 @@ describe('Find & Track should have Demo banner and Demo data', function () {
     it('Demo Banner should be visible', function () {
         cy.visit('/');
         cy.contains('ASO Tools').click();
-        cy.get('div[class="relative cursor-default"]:contains("Keywords")').click();
+        cy.get('div[class="relative cursor-default js-local-navigation-and-tools-step-tour"]:contains("Keywords")').click();
         cy.contains('Find & Track').click();
         
         cy.get('div[class="rounded-8 my-16 relative bg-rb-accent-blue-default !text-rb-bg-white py-40 px-32"]').should('exist');
