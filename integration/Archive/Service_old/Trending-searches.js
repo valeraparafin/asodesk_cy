@@ -1,3 +1,8 @@
+import { Constants } from "../../Service_new/Classes_library/Constants"
+
+const login = Constants.login
+const password = Constants.password
+
 let todaysDate = Cypress.moment().format('x') - 14400000
 const CountryID = ["bb", "uz", "ch", "es", "lb", "ng", "mx", "eg", "cm", "uy", "th", "my", "bm", "cn", "gb", "il", "ec", "is", "hk", "in", "tw", "si", "nz", "ua", "cz", "do", "kw", "tr", "kr", "rs", "it", "vn", "sk", "sv", "no", "bh", "al", "ca", "kz", "qa", "ph", "pe", "by", "sa", "fr", "ge", "om", "kg", "ke", "hr", "kh", "ve", "ie", "pa", "az", "dz", "gt", "am", "py", "mt", "au", "be", "ae", "at", "hn", "za", "nl", "ru", "cy", "gh", "ar", "sg", "mo", "lk", "dk", "ni", "br", "bg", "pk", "lt", "sn", "cl", "us", "cr", "mg", "ao", "lu", "pt", "fi", "pl", "de", "jp", "co", "ee", "hu", "gr", "ug", "se", "tn", "lv", "ro", "id", "bo"]
 const deviceType = 'iphone' //'ipad
@@ -9,10 +14,6 @@ context('Trending Searches', () => {
     })
 
     it('should have results', function () {
-
-
-        const login = 'iparafin@yandex.ru'
-        const password = 'A123321b'
 
         cy.get('.mt5 > :nth-child(1) > .mt15')
             .type(login).should('have.value', login)

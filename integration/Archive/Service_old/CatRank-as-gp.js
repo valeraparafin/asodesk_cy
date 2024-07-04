@@ -1,10 +1,11 @@
 /// <reference types="cypress" />
+import { Constants } from '../../Service_new/Classes_library/Constants';
 
 let prevdaysDate = Cypress.moment().format('X') - 200000
 let todaysDate = Cypress.moment().format('X') - 4800
 
-const login = 'iparafin@yandex.ru'
-const password = 'A123321b'
+const login = Constants.login
+const password = Constants.password
 
 const favcountryID = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR", "CN"]
 /*

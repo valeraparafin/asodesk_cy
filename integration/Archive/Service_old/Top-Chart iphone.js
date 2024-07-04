@@ -1,4 +1,8 @@
 /// <reference types="cypress" />
+import { Constants } from '../../Service_new/Classes_library/Constants';
+
+const login = Constants.login
+const password = Constants.password
 
 let todaysDate = Cypress.moment().format('x') - 14400000
 const favcountryID = ["RU", "US", "GB", "DE", "ES", "IT", "FR", "CA", "AU", "BR", "CN"]
@@ -16,9 +20,6 @@ context('Top Charts', () => {
 
     it('.type() - type into a DOM element', () => {
         // https://on.cypress.io/type
-
-        const login = 'iparafin@yandex.ru'
-        const password = 'A123321b'
 
         cy.get('.mt5 > :nth-child(1) > .mt15')
             .type(login).should('have.value', login)

@@ -1,10 +1,11 @@
 /// <reference types="cypress" />
 import 'dayjs';
+import { Constants } from '../../../Service_new/Classes_library/Constants';
 
 const dayjs = require('dayjs')
 
-const login = 'iparafin@yandex.ru'
-const password = 'A123321b'
+const login = Constants.login
+const password = Constants.password
 
 let todaysDate = dayjs().valueOf() - 14400000;
 
